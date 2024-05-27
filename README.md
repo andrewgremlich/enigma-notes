@@ -28,3 +28,9 @@ v1
 - [CKEditor](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/react/react.html)
 - [React Tree View](https://www.npmjs.com/package/react-accessible-treeview)
 - [Charts](https://www.chartjs.org/docs/latest/getting-started/installation.html)
+- [VexFlow](https://www.vexflow.com/)
+
+Peer2Peer?
+
+- https://www.npmjs.com/package/simple-peer
+- https://crates.io/crates/libp2p

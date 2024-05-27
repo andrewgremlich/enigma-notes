@@ -1,3 +1,4 @@
+import React from 'react';
 import { Resizable } from 're-resizable';
 
 export const FileView = () => {

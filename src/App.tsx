@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { View } from "./types/views";
 import { FileView } from "./components/FileView";
