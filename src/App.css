@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply min-h-screen bg-gray-100;
+}
+
+h1 {
+  @apply text-sm font-bold;
+}
+
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+  @apply text-xl font-bold;
+}
+
+h4 {
+  @apply text-lg font-bold;
+}
+
+h5 {
+  @apply text-base font-bold;
+}
+
+h6 {
+  @apply text-sm font-bold;
+}
+
+p {
+  @apply text-base;
+}
+
+a {
+  @apply text-blue-500 underline;
+}
+
+button {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
