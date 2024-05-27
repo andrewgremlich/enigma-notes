@@ -36,3 +36,6 @@ Peer2Peer?
 
 - https://www.npmjs.com/package/simple-peer
 - https://crates.io/crates/libp2p
+
+Weather! Metadata to note
+Map! Where the note was written
