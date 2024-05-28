@@ -15,18 +15,11 @@ import {
 	Transition,
 } from "@headlessui/react";
 
+import { placeInStyle, type PlaceIn } from "../../utils/style";
+
 const IconSize = 30;
 const IconStyle =
 	"text-slate-600 hover:text-blue-700 transition-colors duration-200 ease-in-out cursor-pointer mb-4";
-
-type PlaceIn = "bottom-right" | "bottom-left" | "top-right" | "top-left";
-
-const placeInStyle = (placeIn: string) => `
-${placeIn === "bottom-right" ? "absolute bottom-2 right-2" : ""}
-${placeIn === "bottom-left" ? "absolute bottom-2 left-2" : ""}
-${placeIn === "top-right" ? "absolute top-2 right-2" : ""}
-${placeIn === "top-left" ? "absolute top-2 left-2" : ""}
-`;
 
 export const NoteTypeSelector = ({ placeIn }: { placeIn: PlaceIn }) => {
 	return (
