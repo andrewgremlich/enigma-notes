@@ -28,9 +28,9 @@ v1
   - [handsontable?](https://handsontable.com/)
   - [React data grid?](https://github.com/adazzle/react-data-grid#readme)
 - [CKEditor](https://ckeditor.com/docs/ckeditor5/latest/installation/integrations/react/react.html)
-- [React Tree View](https://www.npmjs.com/package/react-accessible-treeview)
 - [Charts](https://www.chartjs.org/docs/latest/getting-started/installation.html)
 - [VexFlow](https://www.vexflow.com/)
+- [excalidraw](https://github.com/excalidraw/excalidraw)
 
 Peer2Peer?
 

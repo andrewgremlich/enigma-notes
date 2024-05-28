@@ -1,4 +1,4 @@
 export enum View {
-  File = "file",
-  Note = "note",
+	File = "file",
+	Note = "note",
 }
