@@ -15,11 +15,9 @@ import {
 	Transition,
 } from "@headlessui/react";
 
-import { placeInStyle, type PlaceIn } from "../../utils/style";
+import { placeInStyle, type PlaceIn, IconStyle } from "@/utils/style";
 
 const IconSize = 30;
-const IconStyle =
-	"text-slate-600 hover:text-blue-700 transition-colors duration-200 ease-in-out cursor-pointer mb-4";
 
 export const NoteTypeSelector = ({ placeIn }: { placeIn: PlaceIn }) => {
 	return (
@@ -38,13 +36,13 @@ export const NoteTypeSelector = ({ placeIn }: { placeIn: PlaceIn }) => {
 					leaveTo="opacity-0 translate-y-1"
 				>
 					<PopoverPanel anchor="top">
-						<FiAlignLeft size={IconSize} className={IconStyle} />
-						<FiCalendar size={IconSize} className={IconStyle} />
-						<FiTable size={IconSize} className={IconStyle} />
-						<FiPenTool size={IconSize} className={IconStyle} />
-						<FiMusic size={IconSize} className={IconStyle} />
-						<FiBarChart2 size={IconSize} className={IconStyle} />
-						<FiMap size={IconSize} className={IconStyle} />
+						<FiAlignLeft size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiCalendar size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiTable size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiPenTool size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiMusic size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiBarChart2 size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiMap size={IconSize} className={`${IconStyle} mb-4`} />
 					</PopoverPanel>
 				</Transition>
 			</Popover>

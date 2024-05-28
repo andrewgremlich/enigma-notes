@@ -15,7 +15,7 @@ import {
 	Transition,
 } from "@headlessui/react";
 
-import { placeInStyle, type PlaceIn } from "../../utils/style";
+import { placeInStyle, type PlaceIn } from "@/utils/style";
 import { FeatureFlags } from "./FeatureFlags";
 
 export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
