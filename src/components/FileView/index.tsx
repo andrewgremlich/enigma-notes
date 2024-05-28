@@ -71,7 +71,7 @@ export const FileView = () => {
             </div>
           )}
         />
-        <NoteTypeSelector />
+        <NoteTypeSelector placeIn="bottom-right" />
       </div>
     </Resizable>
   );
