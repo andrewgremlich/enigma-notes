@@ -2,9 +2,10 @@ import { Resizable } from "re-resizable";
 import { FiFilePlus, FiFolderPlus } from "react-icons/fi";
 import TreeView, { flattenTree } from "react-accessible-treeview";
 
-import { FileViewIconStyle, FileViewStyle } from "./style";
 import { NoteTypeSelector } from "../NoteTypeSelector";
 import { Settings } from "../Settings";
+
+import { FileViewIconStyle, FileViewStyle } from "./style";
 
 const folder = {
 	name: "",

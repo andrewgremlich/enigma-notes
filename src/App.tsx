@@ -1,6 +1,6 @@
 import "./App.css";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { FileView } from "./components/FileView";
 import { NoteView } from "./components/NoteView";
@@ -17,6 +17,7 @@ function App() {
 		<>
 			<div className="flex min-h-screen">
 				<FileView />
+				{/* Calendar View */}
 				<NoteView />
 			</div>
 		</>
