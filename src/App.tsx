@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 
 import { FileView } from "./components/FileView";
-import { NoteView } from "./components/NoteView";
+import { NoteEditorView } from "./components/NoteEditorView";
 import { View } from "./types/views";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 			<div className="flex min-h-screen">
 				<FileView />
 				{/* Calendar View */}
-				<NoteView />
+				<NoteEditorView />
 			</div>
 		</>
 	);
