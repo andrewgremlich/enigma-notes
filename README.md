@@ -32,6 +32,9 @@ v1
 - [Charts](https://www.chartjs.org/docs/latest/getting-started/installation.html)
 - [VexFlow](https://www.vexflow.com/)
 - [excalidraw](https://github.com/excalidraw/excalidraw)
+- 3d animation memories
+ - Get scan with iPhone
+ - heck any other 3d file.
 - Peer2Peer?
   - https://www.npmjs.com/package/simple-peer
   - https://crates.io/crates/libp2p

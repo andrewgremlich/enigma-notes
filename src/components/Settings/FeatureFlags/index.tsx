@@ -12,6 +12,7 @@ import {
 import { IconStyle } from "@/utils/style";
 
 export const FeatureFlags = () => {
+	// these will probably need to be set to the SQLite database
 	const [enabledMusic, setEnabledMusic] = useState(false);
 	const [enabledCalendar, setEnabledCalendar] = useState(false);
 	const [enabledDataTable, setEnabledDataTable] = useState(false);
