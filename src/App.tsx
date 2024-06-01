@@ -16,7 +16,7 @@ function App() {
 
 	return (
 		<>
-			<div className="flex h-full">
+			<div className="flex h-full w-full">
 				<FileView />
 				<Wysiwyg />
 			</div>
