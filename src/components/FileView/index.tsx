@@ -56,7 +56,7 @@ export const FileView = () => {
 			maxWidth={400}
 			className={FileViewStyle}
 		>
-			<div className="relative w-full">
+			<div className="relative ">
 				<TreeView
 					data={data}
 					aria-label="File Fiew Tree View"

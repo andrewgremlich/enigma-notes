@@ -6,7 +6,7 @@ transition-colors
 duration-200
 ease-in-out`;
 export const FileViewStyle = `
-min-h-screen
+m-3
 min-w-20
 flex
 justify-between

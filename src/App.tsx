@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { FileView } from "./components/FileView";
 // import { NoteEditorView } from "./components/NoteEditorView";
-import { Wysiwyg } from "./components/NoteEditorView/custom";
+import { Wysiwyg } from "./components/NoteEditorView";
 import { View } from "./types/views";
 
 function App() {
@@ -16,9 +16,8 @@ function App() {
 
 	return (
 		<>
-			<div className="flex min-h-screen">
+			<div className="flex h-full">
 				<FileView />
-				{/* Calendar View */}
 				<Wysiwyg />
 			</div>
 		</>

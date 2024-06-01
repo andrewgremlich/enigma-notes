@@ -1,31 +1,19 @@
-import Document from "@ckeditor/ckeditor5-build-classic";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { type RefObject, useState } from "react";
 
-import "./noteeditor.css";
+import { Toolbar } from "./toolbar";
+import { ContentArea } from "./contentarea";
 
-export const NoteEditorView = () => {
+export const Wysiwyg = () => {
+	const [childRef, setChildRef] = useState<HTMLTextAreaElement | null>(null);
+
+	const handleRef = (ref: RefObject<HTMLTextAreaElement>) => {
+		setChildRef(ref.current);
+	};
+
 	return (
-		<div className="w-full">
-			<CKEditor
-				editor={Document}
-				data="<p>Hello from CKEditor 5!</p>"
-				config={{
-					
-				}}
-				onReady={(editor) => {
-					// You can store the "editor" and use when it is needed.
-					console.log("Editor is ready to use!", editor);
-				}}
-				onChange={(event) => {
-					console.log(event);
-				}}
-				onBlur={(event, editor) => {
-					console.log("Blur.", editor);
-				}}
-				onFocus={(event, editor) => {
-					console.log("Focus.", editor);
-				}}
-			/>
+		<div className="m-3" id="content-editor">
+			<Toolbar contentAreaRef={childRef} />
+			<ContentArea refFromChild={handleRef} />
 		</div>
 	);
 };
