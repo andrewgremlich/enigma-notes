@@ -4,7 +4,9 @@ hover:text-blue-500
 dark:hover:text-blue-300
 transition-colors
 duration-200
+mr-2
 ease-in-out`;
+
 export const FileViewStyle = `
 m-3
 min-w-20

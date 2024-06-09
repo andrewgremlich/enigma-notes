@@ -3,6 +3,8 @@ import "./App.css";
 import { useState } from "react";
 
 import { FileView } from "./components/FileView";
+import { Settings } from "./components/Settings";
+import { NoteTypeSelector } from "./components/NoteTypeSelector";
 // import { NoteEditorView } from "./components/NoteEditorView";
 import { Wysiwyg } from "./components/NoteEditorView";
 import { View } from "./types/views";
@@ -16,9 +18,11 @@ function App() {
 
 	return (
 		<>
-			<div className="flex h-full w-full">
+			<div className="flex justify-center h-full w-full">
 				<FileView />
 				<Wysiwyg />
+				<Settings placeIn="bottom-left" />
+				<NoteTypeSelector />
 			</div>
 		</>
 	);

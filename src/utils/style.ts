@@ -9,7 +9,7 @@ ${placeIn === "top-left" ? "absolute top-2 left-2" : ""}
 
 export const IconStyle = `
 text-slate-600
-dark:text-slate-400
+dark:text-slate-100
 hover:text-blue-700
 dark:hover:text-blue-300
 transition-colors
