@@ -13,8 +13,11 @@ import { IconStyle } from "@/utils/style";
 import { ViewerType } from "./ViewerType";
 import { ViewerContents } from "./ViewerContents";
 
+export type FileViewType = "calendar" | "file-explorer";
+
 export const FileView = () => {
 	const [open, setOpen] = useState(true);
+	const [fileView, setFileView] = useState<FileViewType>("calendar");
 
 	return (
 		<>
@@ -52,7 +55,7 @@ export const FileView = () => {
 									<DialogPanel className="pointer-events-auto relative w-screen max-w-md">
 										<div className="flex h-full flex-col overflow-y-scroll bg-emerald-900 py-6 shadow-xl">
 											<div className="px-4 sm:px-6">
-												<ViewerType />
+												<ViewerType setView={(type) => setFileView(type)} />
 											</div>
 											<div className="mt-6 px-4 sm:px-6 text-gray-300">
 												<ViewerContents />

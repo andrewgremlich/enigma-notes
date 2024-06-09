@@ -8,7 +8,13 @@ import {
 
 import { IconStyle } from "@/utils/style";
 
-export const ViewerType = () => {
+import type { FileViewType } from "./index";
+
+type ViewerTypeProps = {
+	setView: (view: FileViewType) => void;
+};
+
+export const ViewerType = ({ setView }: ViewerTypeProps) => {
 	return (
 		<Popover>
 			<PopoverButton
@@ -31,11 +37,13 @@ export const ViewerType = () => {
 						size={30}
 						className={`${IconStyle} mb-2`}
 						aria-label="Calendar View"
+						onClick={() => setView("calendar")}
 					/>
 					<FiFile
 						size={30}
 						className={`${IconStyle}`}
 						aria-label="File Explorer View"
+						onClick={() => setView("file-explorer")}
 					/>
 				</PopoverPanel>
 			</Transition>
