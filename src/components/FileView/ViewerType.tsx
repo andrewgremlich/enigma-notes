@@ -16,7 +16,6 @@ type ViewerTypeProps = {
 };
 
 export const ViewerType = ({ setView, view }: ViewerTypeProps) => {
-	console.log(view);
 	return (
 		<Popover>
 			<PopoverButton

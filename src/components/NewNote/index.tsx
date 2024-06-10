@@ -15,13 +15,13 @@ import {
 	Transition,
 } from "@headlessui/react";
 
-import { IconStyle } from "@/utils/style";
+import { IconStyle, placeInStyle, type PlaceIn } from "@/utils/style";
 
 const IconSize = 30;
 
-export const NoteTypeSelector = () => {
+export const NewNote = ({ placeIn }: { placeIn: PlaceIn }) => {
 	return (
-		<div className="relative z-50">
+		<div className={`${placeInStyle(placeIn)}`}>
 			<Popover>
 				<PopoverButton>
 					<FiPlusCircle size={IconSize} />

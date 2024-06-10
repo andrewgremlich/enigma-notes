@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { FileView } from "./components/FileView";
 import { Settings } from "./components/Settings";
-import { NoteTypeSelector } from "./components/NoteTypeSelector";
+import { NewNote } from "./components/NewNote";
 // import { NoteEditorView } from "./components/NoteEditorView";
 import { Wysiwyg } from "./components/NoteEditorView";
 import { View } from "./types/views";
@@ -22,7 +22,7 @@ function App() {
 				<FileView />
 				<Wysiwyg />
 				<Settings placeIn="bottom-left" />
-				<NoteTypeSelector />
+				<NewNote placeIn="bottom-right" />
 			</div>
 		</>
 	);
