@@ -5,12 +5,11 @@ import { useState } from "react";
 import { FileView } from "./components/FileView";
 import { Settings } from "./components/Settings";
 import { NewNote } from "./components/NewNote";
-// import { NoteEditorView } from "./components/NoteEditorView";
 import { Wysiwyg } from "./components/NoteEditorView";
-import { View } from "./types/views";
+import type { NoteView } from "./types/views";
 
 function App() {
-	const [view, setView] = useState<View>(View.File);
+	const [view, setView] = useState<NoteView>("note");
 	// async function greet() {
 	// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 	//   setGreetMsg(await invoke("greet", { name }));
@@ -20,7 +19,7 @@ function App() {
 		<>
 			<div className="flex justify-center h-full w-full">
 				<FileView />
-				<Wysiwyg />
+				{view === "note" ? <Wysiwyg /> : null}
 				<Settings placeIn="bottom-left" />
 				<NewNote placeIn="bottom-right" />
 			</div>

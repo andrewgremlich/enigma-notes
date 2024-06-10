@@ -1,4 +1,8 @@
-export enum View {
-	File = "file",
-	Note = "note",
-}
+export type NoteView =
+  | "calendar"
+  | "note"
+  | "table"
+  | "music"
+  | "chart"
+  | "map"
+  | "draw";
