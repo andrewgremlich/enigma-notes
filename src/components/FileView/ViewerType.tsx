@@ -12,16 +12,18 @@ import type { FileViewType } from "./index";
 
 type ViewerTypeProps = {
 	setView: (view: FileViewType) => void;
+	view: FileViewType;
 };
 
-export const ViewerType = ({ setView }: ViewerTypeProps) => {
+export const ViewerType = ({ setView, view }: ViewerTypeProps) => {
+	console.log(view);
 	return (
 		<Popover>
 			<PopoverButton
 				aria-label="View Type Selector"
 				className="text-white flex items-center hover:bg-emerald-950 px-4 py-2 rounded-md transition-colors duration-200 ease-in-out"
 			>
-				<FiEye size={30} className={`${IconStyle} mr-2`} /> View selector
+				<FiEye size={30} className={`${IconStyle} mr-2`} />
 			</PopoverButton>
 
 			<Transition
@@ -35,6 +37,7 @@ export const ViewerType = ({ setView }: ViewerTypeProps) => {
 				<PopoverPanel anchor="top" className="bg-emerald-950 p-4">
 					<FiCalendar
 						size={30}
+						style={{ color: view === "calendar" ? "#68d391" : "#fff" }}
 						className={`${IconStyle} mb-2`}
 						aria-label="Calendar View"
 						onClick={() => setView("calendar")}
@@ -42,6 +45,7 @@ export const ViewerType = ({ setView }: ViewerTypeProps) => {
 					<FiFile
 						size={30}
 						className={`${IconStyle}`}
+						style={{ color: view === "file-explorer" ? "#68d391" : "#fff" }}
 						aria-label="File Explorer View"
 						onClick={() => setView("file-explorer")}
 					/>
