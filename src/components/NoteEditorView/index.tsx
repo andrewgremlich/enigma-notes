@@ -10,8 +10,8 @@ import {
 } from "slate-react";
 
 import { Leaf, CodeElement, DefaultElement } from "./wysiwyg-elements";
-import { EditorActions } from "./custom-editor";
 import { getFromStorage } from "./serializer";
+import { KeyboardShortcuts, TextShortcuts } from "./keyboard-events";
 
 export const Wysiwyg = () => {
 	const [editor] = useState(() => withReact(createEditor()));
@@ -60,28 +60,14 @@ export const Wysiwyg = () => {
 					renderElement={renderElement}
 					renderLeaf={renderLeaf}
 					onKeyDown={(event) => {
-						if (event.key === "&") {
-							event.preventDefault();
-							editor.insertText("and");
-						}
+						TextShortcuts(event.key, editor);
 
 						if (!event.ctrlKey) {
 							return;
 						}
 
-						switch (event.key) {
-							case "`": {
-								event.preventDefault();
-								EditorActions.toggleCodeBlock(editor);
-								break;
-							}
-
-							case "b": {
-								event.preventDefault();
-								EditorActions.toggleBoldMark(editor);
-								break;
-							}
-						}
+						event.preventDefault();
+						KeyboardShortcuts(event.key, editor);
 					}}
 				/>
 			</Slate>

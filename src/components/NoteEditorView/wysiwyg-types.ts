@@ -15,6 +15,7 @@ export type CustomText = {
   list?: boolean;
   hr?: boolean;
   blockquote?: boolean;
+  code?: boolean;
 };
 
 export type ParagraphElement = {
