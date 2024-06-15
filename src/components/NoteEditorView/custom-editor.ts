@@ -1,21 +1,24 @@
-import { Editor, Transforms } from "slate";
+import { Editor, Transforms, Element } from "slate";
+import type { CustomEditor } from "./wysiwyg-types";
 
-export const CustomEditor = {
-  isBoldMarkActive(editor) {
+export const EditorActions = {
+  isBoldMarkActive(editor: CustomEditor) {
     const marks = Editor.marks(editor);
+
     return marks ? marks.bold === true : false;
   },
 
-  isCodeBlockActive(editor) {
+  isCodeBlockActive(editor: CustomEditor) {
     const [match] = Editor.nodes(editor, {
-      match: (n) => n.type === "code",
+      match: (node) => (Element.isElement(node) ? node.type === "code" : false),
     });
 
     return !!match;
   },
 
-  toggleBoldMark(editor) {
-    const isActive = CustomEditor.isBoldMarkActive(editor);
+  toggleBoldMark(editor: CustomEditor) {
+    const isActive = EditorActions.isBoldMarkActive(editor);
+
     if (isActive) {
       Editor.removeMark(editor, "bold");
     } else {
@@ -23,12 +26,16 @@ export const CustomEditor = {
     }
   },
 
-  toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isCodeBlockActive(editor);
+  toggleCodeBlock(editor: CustomEditor) {
+    const isActive = EditorActions.isCodeBlockActive(editor);
+
     Transforms.setNodes(
       editor,
-      { type: isActive ? null : "code" },
-      { match: (n) => Editor.isBlock(editor, n) }
+      { type: isActive ? undefined : "code" },
+      {
+        match: (node) =>
+          Element.isElement(node) && Editor.isBlock(editor, node),
+      }
     );
   },
 };

@@ -1,39 +1,22 @@
-import { useCallback, useMemo, useRef, useState } from "react";
-import sanitizeHtml from "sanitize-html";
+import { useCallback, useMemo, useState } from "react";
 import { createEditor } from "slate";
-import { Slate, Editable, withReact, ReactEditor } from "slate-react";
+import {
+	Slate,
+	Editable,
+	withReact,
+	ReactEditor,
+	type RenderElementProps,
+	type RenderLeafProps,
+} from "slate-react";
 
 import { Leaf, CodeElement, DefaultElement } from "./wysiwyg-elements";
-import { CustomEditor } from "./custom-editor";
+import { EditorActions } from "./custom-editor";
+import { getFromStorage } from "./serializer";
 
 export const Wysiwyg = () => {
 	const [editor] = useState(() => withReact(createEditor()));
-	const editableRef = useRef<HTMLDivElement | null>(null);
 
-	// const getData = () => {
-	// 	const data = editor?.getData();
-	// 	const sanitized = sanitizeHtml(data ?? "", {
-	// 		allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-	// 		allowedAttributes: {
-	// 			a: ["href", "name", "target"],
-	// 			img: ["src", "srcset", "alt", "title", "width", "height", "loading"],
-	// 		},
-	// 		selfClosing: [
-	// 			"img",
-	// 			"br",
-	// 			"hr",
-	// 			"area",
-	// 			"base",
-	// 			"basefont",
-	// 			"input",
-	// 			"link",
-	// 			"meta",
-	// 		],
-	// 	});
-	// 	console.log(sanitizeHtml(sanitized));
-	// };
-
-	const renderElement = useCallback((props) => {
+	const renderElement = useCallback((props: RenderElementProps) => {
 		switch (props.element.type) {
 			case "code":
 				return <CodeElement {...props} />;
@@ -42,34 +25,14 @@ export const Wysiwyg = () => {
 		}
 	}, []);
 
-	const renderLeaf = useCallback((props) => {
+	const renderLeaf = useCallback((props: RenderLeafProps) => {
 		return <Leaf {...props} />;
 	}, []);
 
-	const initialValue = useMemo(() => {
-		try {
-			const fetchedValue = localStorage.getItem("content");
+	const initialValue = useMemo(getFromStorage, []);
 
-			if (!fetchedValue) {
-				return [
-					{
-						type: "paragraph",
-						children: [{ text: "" }],
-					},
-				];
-			}
-
-			return JSON.parse(fetchedValue);
-		} catch (error) {
-			console.error(error);
-			return [
-				{
-					type: "paragraph",
-					children: [{ text: "" }],
-				},
-			];
-		}
-	}, []);
+	// https://www.slatejs.org/examples/markdown-preview
+	// https://github.com/ianstormtaylor/slate/blob/main/site/examples/markdown-shortcuts.tsx
 
 	return (
 		<div
@@ -81,10 +44,10 @@ export const Wysiwyg = () => {
 				editor={editor}
 				initialValue={initialValue}
 				onChange={(value) => {
-					console.log(value);
 					const isAstChange = editor.operations.some(
 						(op) => "set_selection" !== op.type,
 					);
+
 					if (isAstChange) {
 						// Save the value to Local Storage.
 						localStorage.setItem("content", JSON.stringify(value));
@@ -97,6 +60,11 @@ export const Wysiwyg = () => {
 					renderElement={renderElement}
 					renderLeaf={renderLeaf}
 					onKeyDown={(event) => {
+						if (event.key === "&") {
+							event.preventDefault();
+							editor.insertText("and");
+						}
+
 						if (!event.ctrlKey) {
 							return;
 						}
@@ -104,13 +72,13 @@ export const Wysiwyg = () => {
 						switch (event.key) {
 							case "`": {
 								event.preventDefault();
-								CustomEditor.toggleCodeBlock(editor);
+								EditorActions.toggleCodeBlock(editor);
 								break;
 							}
 
 							case "b": {
 								event.preventDefault();
-								CustomEditor.toggleBoldMark(editor);
+								EditorActions.toggleBoldMark(editor);
 								break;
 							}
 						}

@@ -1,4 +1,6 @@
-export const Leaf = ({ attributes, children, leaf }) => {
+import type { RenderLeafProps, RenderElementProps } from "slate-react";
+
+export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
 	return (
 		<span
 			{...attributes}
@@ -19,7 +21,7 @@ export const Leaf = ({ attributes, children, leaf }) => {
 	);
 };
 
-export const CodeElement = (props) => {
+export const CodeElement = (props: RenderElementProps) => {
 	return (
 		<pre {...props.attributes}>
 			<code>{props.children}</code>
@@ -27,6 +29,6 @@ export const CodeElement = (props) => {
 	);
 };
 
-export const DefaultElement = (props) => {
+export const DefaultElement = (props: RenderElementProps) => {
 	return <p {...props.attributes}>{props.children}</p>;
 };
