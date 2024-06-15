@@ -20,6 +20,8 @@ export const Wysiwyg = () => {
 		switch (props.element.type) {
 			case "code":
 				return <CodeElement {...props} />;
+			case "blockquote":
+				return <blockquote {...props.attributes}>{props.children}</blockquote>;
 			default:
 				return <DefaultElement {...props} />;
 		}

@@ -14,8 +14,6 @@ export type CustomText = {
   title?: boolean;
   list?: boolean;
   hr?: boolean;
-  blockquote?: boolean;
-  code?: boolean;
 };
 
 export type ParagraphElement = {
@@ -34,7 +32,16 @@ export type CodeElement = {
   children: CustomText[];
 };
 
-export type CustomElement = ParagraphElement | HeadingElement | CodeElement;
+export type BlockquoteElement = {
+  type: "blockquote";
+  children: CustomText[];
+};
+
+export type CustomElement =
+  | ParagraphElement
+  | HeadingElement
+  | CodeElement
+  | BlockquoteElement;
 
 declare module "slate" {
   interface CustomTypes {
