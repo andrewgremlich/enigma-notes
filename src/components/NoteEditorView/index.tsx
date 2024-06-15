@@ -11,7 +11,7 @@ import {
 
 import { Leaf, CodeElement, DefaultElement } from "./wysiwyg-elements";
 import { getFromStorage } from "./serializer";
-import { KeyboardShortcuts, TextShortcuts } from "./keyboard-events";
+import { KeyboardShortcuts } from "./keyboard-events";
 
 export const Wysiwyg = () => {
 	const [editor] = useState(() => withReact(createEditor()));
@@ -59,16 +59,7 @@ export const Wysiwyg = () => {
 					// Pass in the `renderElement` function.
 					renderElement={renderElement}
 					renderLeaf={renderLeaf}
-					onKeyDown={(event) => {
-						TextShortcuts(event.key, editor);
-
-						if (!event.ctrlKey) {
-							return;
-						}
-
-						event.preventDefault();
-						KeyboardShortcuts(event.key, editor);
-					}}
+					onKeyDown={KeyboardShortcuts(editor)}
 				/>
 			</Slate>
 		</div>
