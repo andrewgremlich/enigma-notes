@@ -9,7 +9,7 @@ import {
 	appLocalDataDir,
 	cacheDir as cacheDir2,
 } from "@tauri-apps/api/path";
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke } from "@tauri-apps/api/tauri";
 
 import { FileView } from "./components/FileView";
 import { Settings } from "./components/Settings";
@@ -49,9 +49,6 @@ function App() {
 			<div className="flex justify-center h-full w-full">
 				<FileView />
 				{view === "note" ? <Wysiwyg /> : null}
-				<button type="button" onClick={showPaths}>
-					Show dirs
-				</button>
 				<Settings placeIn="bottom-left" />
 				<NewNote placeIn="bottom-right" />
 			</div>

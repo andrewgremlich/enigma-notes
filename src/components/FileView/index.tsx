@@ -18,7 +18,7 @@ import { calendarViewData, fileViewData } from "./mockData";
 export type FileViewType = "calendar" | "file-explorer";
 
 export const FileView = () => {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	const [fileView, setFileView] = useState<FileViewType>("calendar");
 
 	return (
