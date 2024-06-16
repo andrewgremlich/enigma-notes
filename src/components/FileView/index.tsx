@@ -55,14 +55,14 @@ export const FileView = () => {
 									leaveTo="-translate-x-full"
 								>
 									<DialogPanel className="pointer-events-auto relative w-screen max-w-md">
-										<div className="flex h-full flex-col overflow-y-scroll bg-emerald-900 py-6 shadow-xl">
+										<div className="flex h-full flex-col overflow-y-scroll dark:bg-emerald-900 bg-emerald-300 py-6 shadow-xl">
 											<div className="px-4 sm:px-6">
 												<ViewerType
 													setView={(type) => setFileView(type)}
 													view={fileView}
 												/>
 											</div>
-											<div className="mt-6 px-4 sm:px-6 text-gray-300">
+											<div className="mt-6 px-4 sm:px-6 dark:text-gray-300 text-gray-800">
 												{fileView === "calendar" ? (
 													<CalendarViewerContents data={calendarViewData} />
 												) : (
@@ -84,7 +84,7 @@ export const FileView = () => {
 													>
 														<FiXCircle
 															size={30}
-															className={`${IconStyle}`}
+															className={`${IconStyle} text-slate-100`}
 															aria-hidden="true"
 														/>
 													</button>

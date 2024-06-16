@@ -35,14 +35,14 @@ export const NewNote = ({ placeIn }: { placeIn: PlaceIn }) => {
 					leaveFrom="opacity-100 translate-y-0"
 					leaveTo="opacity-0 translate-y-1"
 				>
-					<PopoverPanel anchor="top">
+					<PopoverPanel anchor="top" className="bg-slate-800 p-4 rounded-xl shadow-xl">
 						<FiAlignLeft size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiCalendar size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiTable size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiPenTool size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiMusic size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiBarChart2 size={IconSize} className={`${IconStyle} mb-4`} />
-						<FiMap size={IconSize} className={`${IconStyle} mb-4`} />
+						<FiMap size={IconSize} className={`${IconStyle}`} />
 					</PopoverPanel>
 				</Transition>
 			</Popover>

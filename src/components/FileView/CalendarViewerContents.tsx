@@ -20,7 +20,9 @@ export const CalendarViewerContents = ({
 						<h2>{dateCreated}</h2>
 						<p>{data}</p>
 					</div>
-					{index < data.length - 1 && <hr />}
+					{index < data.length - 1 && (
+						<hr className="border-2 border-slate-900 dark:border-slate-200 my-1" />
+					)}
 				</Fragment>
 			))}
 		</div>

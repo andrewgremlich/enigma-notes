@@ -12,6 +12,7 @@ import {
 import { Leaf, CodeElement, DefaultElement } from "./wysiwyg-elements";
 import { getFromStorage } from "./serializer";
 import { KeyboardShortcuts } from "./keyboard-events";
+import { NodeEditorViewStyle } from "./style";
 
 export const Wysiwyg = () => {
 	const [editor] = useState(() => withReact(createEditor()));
@@ -38,7 +39,7 @@ export const Wysiwyg = () => {
 
 	return (
 		<div
-			className="border-2 border-cyan-400 max-w-prose w-full"
+			className={NodeEditorViewStyle}
 			onClick={() => ReactEditor.focus(editor)}
 			onKeyDown={() => ReactEditor.focus(editor)}
 		>

@@ -46,7 +46,7 @@ function App() {
 
 	return (
 		<>
-			<div className="flex justify-center h-full w-full">
+			<div className="h-full w-full">
 				<FileView />
 				{view === "note" ? <Wysiwyg /> : null}
 				<Settings placeIn="bottom-left" />

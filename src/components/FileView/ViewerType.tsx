@@ -20,9 +20,9 @@ export const ViewerType = ({ setView, view }: ViewerTypeProps) => {
 		<Popover>
 			<PopoverButton
 				aria-label="View Type Selector"
-				className="text-white flex items-center hover:bg-emerald-950 px-4 py-2 rounded-md transition-colors duration-200 ease-in-out"
+				className="text:black dark:text-white flex items-center hover:bg-emerald-400 dark:hover:bg-emerald-800 px-4 py-2 rounded-md transition-colors duration-200 ease-in-out"
 			>
-				<FiEye size={30} className={`${IconStyle} mr-2`} />
+				<FiEye size={30} className={`${IconStyle}`} />
 			</PopoverButton>
 
 			<Transition
@@ -33,18 +33,27 @@ export const ViewerType = ({ setView, view }: ViewerTypeProps) => {
 				leaveFrom="opacity-100 translate-y-0"
 				leaveTo="opacity-0 translate-y-1"
 			>
-				<PopoverPanel anchor="top" className="bg-emerald-950 p-4">
+				<PopoverPanel
+					anchor="top"
+					className="bg-emerald-400 dark:bg-emerald-800 p-4 shadow-lg rounded-md mt-3"
+				>
 					<FiCalendar
 						size={30}
-						style={{ color: view === "calendar" ? "#68d391" : "#fff" }}
-						className={`${IconStyle} mb-2`}
+						className={`${IconStyle} mb-2 ${
+							view === "calendar"
+								? "text-cyan-800 dark:text-cyan-200"
+								: "text-white dark:text-slate-200"
+						}`}
 						aria-label="Calendar View"
 						onClick={() => setView("calendar")}
 					/>
 					<FiFile
 						size={30}
-						className={`${IconStyle}`}
-						style={{ color: view === "file-explorer" ? "#68d391" : "#fff" }}
+						className={`${IconStyle} ${
+							view === "file-explorer"
+								? "text-cyan-800 dark:text-cyan-200"
+								: "text-white dark:text-slate-200"
+						}`}
 						aria-label="File Explorer View"
 						onClick={() => setView("file-explorer")}
 					/>
