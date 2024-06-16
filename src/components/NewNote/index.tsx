@@ -1,21 +1,21 @@
 import {
+	Popover,
+	PopoverButton,
+	PopoverPanel,
+	Transition,
+} from "@headlessui/react";
+import {
 	FiAlignLeft,
 	FiBarChart2,
 	FiCalendar,
 	FiMap,
 	FiMusic,
 	FiPenTool,
-	FiTable,
 	FiPlusCircle,
+	FiTable,
 } from "react-icons/fi";
-import {
-	Popover,
-	PopoverButton,
-	PopoverPanel,
-	Transition,
-} from "@headlessui/react";
 
-import { IconStyle, placeInStyle, type PlaceIn } from "@/utils/style";
+import { IconStyle, type PlaceIn, placeInStyle } from "@/utils/style";
 
 const IconSize = 30;
 
@@ -35,7 +35,10 @@ export const NewNote = ({ placeIn }: { placeIn: PlaceIn }) => {
 					leaveFrom="opacity-100 translate-y-0"
 					leaveTo="opacity-0 translate-y-1"
 				>
-					<PopoverPanel anchor="top" className="bg-slate-800 p-4 rounded-xl shadow-xl">
+					<PopoverPanel
+						anchor="top"
+						className="bg-slate-800 p-4 rounded-xl shadow-xl"
+					>
 						<FiAlignLeft size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiCalendar size={IconSize} className={`${IconStyle} mb-4`} />
 						<FiTable size={IconSize} className={`${IconStyle} mb-4`} />

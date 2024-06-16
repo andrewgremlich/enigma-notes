@@ -1,4 +1,4 @@
-import type { RenderLeafProps, RenderElementProps } from "slate-react";
+import type { RenderElementProps, RenderLeafProps } from "slate-react";
 
 export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
 	return (
@@ -7,10 +7,8 @@ export const Leaf = ({ attributes, children, leaf }: RenderLeafProps) => {
 			className={`${leaf.bold ? "font-bold" : ""} ${
 				leaf.italic ? "italic" : ""
 			} ${leaf.underlined ? "underline" : ""} ${
-				leaf.title ? "block font-bold text-2xl my-5" : ""
-			} ${leaf.list ? "pl-4 text-xl leading-5" : ""} ${
-				leaf.hr ? "block text-center border-b-2 border-gray-300" : ""
-			} `}
+				leaf.list ? "pl-4 text-xl leading-5" : ""
+			} ${leaf.hr ? "block text-center border-b-2 border-gray-300" : ""} `}
 		>
 			{children}
 		</span>

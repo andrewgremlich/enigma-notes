@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { FiSettings } from "react-icons/fi";
 import {
 	Button,
 	Tab,
@@ -14,8 +12,10 @@ import {
 	DialogTitle,
 	Transition,
 } from "@headlessui/react";
+import { useState } from "react";
+import { FiSettings } from "react-icons/fi";
 
-import { placeInStyle, type PlaceIn } from "@/utils/style";
+import { type PlaceIn, placeInStyle } from "@/utils/style";
 import { FeatureFlags } from "./FeatureFlags";
 
 export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {

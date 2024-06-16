@@ -3,38 +3,47 @@ import { Editor, Element } from "slate";
 import type { CustomEditor } from "../wysiwyg-types";
 
 export const isFeatureActive = {
-  isBoldMarkActive(editor: CustomEditor) {
-    const marks = Editor.marks(editor);
+	isHeadingActive(editor: CustomEditor, level: number) {
+		const [match] = Editor.nodes(editor, {
+			match: (node) =>
+				Element.isElement(node) ? node.type === "heading" : false,
+		});
 
-    return marks ? marks.bold === true : false;
-  },
+		return match && match[0].level === level;
+	},
 
-  isCodeBlockActive(editor: CustomEditor) {
-    const [match] = Editor.nodes(editor, {
-      match: (node) => (Element.isElement(node) ? node.type === "code" : false),
-    });
+	isBoldMarkActive(editor: CustomEditor) {
+		const marks = Editor.marks(editor);
 
-    return !!match;
-  },
+		return marks ? marks.bold === true : false;
+	},
 
-  isBlockquoteActive(editor: CustomEditor) {
-    const [match] = Editor.nodes(editor, {
-      match: (node) =>
-        Element.isElement(node) ? node.type === "blockquote" : false,
-    });
+	isCodeBlockActive(editor: CustomEditor) {
+		const [match] = Editor.nodes(editor, {
+			match: (node) => (Element.isElement(node) ? node.type === "code" : false),
+		});
 
-    return !!match;
-  },
+		return !!match;
+	},
 
-  isItalicMarkActive(editor: CustomEditor) {
-    const marks = Editor.marks(editor);
+	isBlockquoteActive(editor: CustomEditor) {
+		const [match] = Editor.nodes(editor, {
+			match: (node) =>
+				Element.isElement(node) ? node.type === "blockquote" : false,
+		});
 
-    return marks ? marks.italic === true : false;
-  },
+		return !!match;
+	},
 
-  isUnderlinedMarkActive(editor: CustomEditor) {
-    const marks = Editor.marks(editor);
+	isItalicMarkActive(editor: CustomEditor) {
+		const marks = Editor.marks(editor);
 
-    return marks ? marks.underlined === true : false;
-  },
+		return marks ? marks.italic === true : false;
+	},
+
+	isUnderlinedMarkActive(editor: CustomEditor) {
+		const marks = Editor.marks(editor);
+
+		return marks ? marks.underlined === true : false;
+	},
 };

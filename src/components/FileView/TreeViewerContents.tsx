@@ -1,6 +1,6 @@
-import { FiFolder, FiFile } from "react-icons/fi";
 import TreeView, { type INode } from "react-accessible-treeview";
 import type { IFlatMetadata } from "react-accessible-treeview/dist/TreeView/utils";
+import { FiFile, FiFolder } from "react-icons/fi";
 
 import { FileViewIconStyle } from "./style";
 

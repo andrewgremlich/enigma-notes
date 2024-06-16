@@ -1,24 +1,42 @@
 import { useCallback, useMemo, useState } from "react";
 import { createEditor } from "slate";
 import {
-	Slate,
 	Editable,
-	withReact,
 	ReactEditor,
 	type RenderElementProps,
 	type RenderLeafProps,
+	Slate,
+	withReact,
 } from "slate-react";
 
-import { Leaf, CodeElement, DefaultElement } from "./wysiwyg-elements";
-import { getFromStorage } from "./serializer";
 import { KeyboardShortcuts } from "./keyboard-events";
+import { getFromStorage } from "./serializer";
 import { NodeEditorViewStyle } from "./style";
+import { CodeElement, DefaultElement, Leaf } from "./wysiwyg-elements";
 
 export const Wysiwyg = () => {
 	const [editor] = useState(() => withReact(createEditor()));
 
 	const renderElement = useCallback((props: RenderElementProps) => {
 		switch (props.element.type) {
+			case "heading": {
+				const { level } = props.element;
+				return level === 1 ? (
+					<h1 {...props.attributes}>{props.children}</h1>
+				) : level === 2 ? (
+					<h2 {...props.attributes}>{props.children}</h2>
+				) : level === 3 ? (
+					<h3 {...props.attributes}>{props.children}</h3>
+				) : level === 4 ? (
+					<h4 {...props.attributes}>{props.children}</h4>
+				) : level === 5 ? (
+					<h5 {...props.attributes}>{props.children}</h5>
+				) : level === 6 ? (
+					<h6 {...props.attributes}>{props.children}</h6>
+				) : (
+					<p>Hello world</p>
+				);
+			}
 			case "code":
 				return <CodeElement {...props} />;
 			case "blockquote":

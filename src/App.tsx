@@ -1,20 +1,20 @@
 import "./App.css";
 
-import { useState } from "react";
 import {
 	appCacheDir,
 	appConfigDir,
 	appDataDir,
-	appLogDir,
 	appLocalDataDir,
+	appLogDir,
 	cacheDir as cacheDir2,
 } from "@tauri-apps/api/path";
 import { invoke } from "@tauri-apps/api/tauri";
+import { useState } from "react";
 
 import { FileView } from "./components/FileView";
-import { Settings } from "./components/Settings";
 import { NewNote } from "./components/NewNote";
 import { Wysiwyg } from "./components/NoteEditorView";
+import { Settings } from "./components/Settings";
 import type { NoteView } from "./types/views";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
 
 	return (
 		<>
-			<div className="h-full w-full">
+			<div className="h-full w-full p-4">
 				<FileView />
 				{view === "note" ? <Wysiwyg /> : null}
 				<Settings placeIn="bottom-left" />

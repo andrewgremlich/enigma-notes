@@ -1,10 +1,10 @@
-import { FiEye, FiCalendar, FiFile } from "react-icons/fi";
 import {
 	Popover,
 	PopoverButton,
 	PopoverPanel,
 	Transition,
 } from "@headlessui/react";
+import { FiCalendar, FiEye, FiFile } from "react-icons/fi";
 
 import { IconStyle } from "@/utils/style";
 

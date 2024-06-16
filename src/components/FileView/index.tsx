@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { FiMenu, FiXCircle } from "react-icons/fi";
 import {
+	Button,
 	Dialog,
 	DialogPanel,
 	Transition,
 	TransitionChild,
-	Button,
 } from "@headlessui/react";
+import { useState } from "react";
+import { FiMenu, FiXCircle } from "react-icons/fi";
 
 import { IconStyle } from "@/utils/style";
 
-import { ViewerType } from "./ViewerType";
-import { TreeViewerContents } from "./TreeViewerContents";
 import { CalendarViewerContents } from "./CalendarViewerContents";
+import { TreeViewerContents } from "./TreeViewerContents";
+import { ViewerType } from "./ViewerType";
 import { calendarViewData, fileViewData } from "./mockData";
 
 export type FileViewType = "calendar" | "file-explorer";

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Switch } from "@headlessui/react";
+import { useState } from "react";
 import {
 	FiBarChart2,
 	FiCalendar,
