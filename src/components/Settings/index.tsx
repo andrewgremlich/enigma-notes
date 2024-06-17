@@ -42,21 +42,25 @@ export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 					className="relative z-50"
 				>
 					<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-						<DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-							<DialogTitle className="font-bold flex">
+						<DialogPanel className="max-w-prose w-full h-auto bg-white dark:bg-emerald-900 p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all">
+							<DialogTitle className="font-bold flex mb-4">
 								<FiSettings className="cursor-pointer mr-4" size={30} />{" "}
 								Settings
 							</DialogTitle>
 
 							<TabGroup>
-								<TabList>
-									<Tab>Feature Flags</Tab>
-									<Tab>Tab 2</Tab>
-									<Tab>Tab 3</Tab>
+								<TabList className="mb-10 p-2 border-b-2 flex justify-between">
+									{["Feature Flags", "Tab 2", "Tab 3"].map((tab) => (
+										<Tab
+											key={crypto.randomUUID()}
+											className="dark:hover:text-amber-300 hover:text-amber-700 transition-all"
+										>
+											{tab}
+										</Tab>
+									))}
 								</TabList>
 								<TabPanels>
 									<TabPanel>
-										{" "}
 										<FeatureFlags />
 									</TabPanel>
 									<TabPanel>Content 2</TabPanel>
@@ -64,7 +68,7 @@ export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 								</TabPanels>
 							</TabGroup>
 
-							<Button onClick={() => setIsOpen(false)}>Close</Button>
+							<Button className="mt-10 dark:hover:text-amber-300 hover:text-amber-700 border-2 px-4 py-2 rounded-lg" onClick={() => setIsOpen(false)}>Close</Button>
 						</DialogPanel>
 					</div>
 				</Dialog>

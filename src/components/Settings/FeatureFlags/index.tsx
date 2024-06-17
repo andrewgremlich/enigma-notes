@@ -22,56 +22,52 @@ export const FeatureFlags = () => {
 
 	return (
 		<div>
-			<p className="mb-4">Choose which features you want to enable.</p>
-
-			<p className="mb-4">The standard text editor is default.</p>
-
 			{[
 				{
-					icon: <FiCalendar size={20} className={IconStyle} />,
+					icon: <FiCalendar size={20} className={`${IconStyle} mx-2`} />,
 					label: "Calendar",
 					state: enabledCalendar,
 					action: setEnabledCalendar,
 				},
 				{
-					icon: <FiTable size={20} className={IconStyle} />,
+					icon: <FiTable size={20} className={`${IconStyle} mx-2`} />,
 					label: "Data Table",
 					state: enabledDataTable,
 					action: setEnabledDataTable,
 				},
 				{
-					icon: <FiPenTool size={20} className={IconStyle} />,
+					icon: <FiPenTool size={20} className={`${IconStyle} mx-2`} />,
 					label: "Drawing",
 					state: enabledDrawing,
 					action: setEnabledDrawing,
 				},
 				{
-					icon: <FiMusic size={20} className={IconStyle} />,
+					icon: <FiMusic size={20} className={`${IconStyle} mx-2`} />,
 					label: "Music Notation",
 					state: enabledMusic,
 					action: setEnabledMusic,
 				},
 				{
-					icon: <FiBarChart2 size={20} className={IconStyle} />,
+					icon: <FiBarChart2 size={20} className={`${IconStyle} mx-2`} />,
 					label: "Charts",
 					state: enabledCharts,
 					action: setEnabledCharts,
 				},
 				{
-					icon: <FiMap size={20} className={IconStyle} />,
+					icon: <FiMap size={20} className={`${IconStyle} mx-2`} />,
 					label: "Maps",
 					state: enabledMaps,
 					action: setEnabledMaps,
 				},
 			].map(({ label, state, action, icon }) => {
 				return (
-					<div key={crypto.randomUUID()} className="flex mr-2">
+					<div key={crypto.randomUUID()} className="flex mb-3">
 						<Switch
 							checked={state}
 							onChange={action}
-							className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600"
+							className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-all data-[checked]:bg-blue-600"
 						>
-							<span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+							<span className="size-4 translate-x-1 rounded-full bg-gray-500 transition-all group-data-[checked]:translate-x-6" />
 						</Switch>
 						<label className="flex">
 							{icon}
