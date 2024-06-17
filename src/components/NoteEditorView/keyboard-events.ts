@@ -7,8 +7,10 @@ import type { CustomEditor } from "./wysiwyg-types";
 
 export const KeyboardShortcuts =
   (editor: CustomEditor) => (event: KeyboardEvent<HTMLDivElement>) => {
-    // not sure of the prevent default is completely necessary
-    // event.preventDefault();
+    if (isHotkey("Enter", event)) {
+      event.preventDefault();
+      EditorActions.addNewDefaultNode(editor);
+    }
 
     if (isHotkey("mod+shift+.", event)) {
       EditorActions.toggleBlockquote(editor);
@@ -30,12 +32,20 @@ export const KeyboardShortcuts =
       EditorActions.toggleUnderlinedMark(editor);
     }
 
-    if (event.key === "#" && !isFeatureActive.isCodeBlockActive(editor)) {
+    if (isHotkey("mod+1", event)) {
       EditorActions.toggleHeading(editor, 1);
     }
 
-    if (event.key === "##" && !isFeatureActive.isCodeBlockActive(editor)) {
+    if (isHotkey("mod+2", event)) {
       EditorActions.toggleHeading(editor, 2);
+    }
+
+    if (isHotkey("mod+3", event)) {
+      EditorActions.toggleHeading(editor, 3);
+    }
+
+    if (isHotkey("mod+4", event)) {
+      EditorActions.toggleHeading(editor, 4);
     }
 
     if (event.key === "&" && !isFeatureActive.isCodeBlockActive(editor)) {
