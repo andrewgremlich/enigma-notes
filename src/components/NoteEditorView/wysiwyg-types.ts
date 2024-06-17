@@ -34,6 +34,12 @@ type BlockquoteElement = {
   children: CustomText[];
 };
 
+export type ImageElement = {
+  type: "image";
+  url: string;
+  children: CustomText[];
+};
+
 export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 
 declare module "slate" {
@@ -43,6 +49,7 @@ declare module "slate" {
       | HeadingElement
       | CodeElement
       | BlockquoteElement
+      | ImageElement
       | ParagraphElement;
     Text: CustomText;
   }
