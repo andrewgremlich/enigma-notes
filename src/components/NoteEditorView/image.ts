@@ -2,7 +2,7 @@ import { Transforms } from "slate";
 import isUrl from "is-url";
 import isImage from "is-image";
 
-import type { CustomEditor, ImageElement } from "./wysiwyg-types";
+import type { CustomEditor, ImageElement } from "../NoteParts/Wysiwyg/wysiwyg-types";
 
 const isImageUrl = (url: string) => {
   if (!url) return false;

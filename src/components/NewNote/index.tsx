@@ -17,52 +17,90 @@ import {
 import { FaPencilAlt } from "react-icons/fa";
 import { IconStyle, type PlaceIn, placeInStyle } from "@/utils/style";
 import type { NoteView } from "@/types/views";
-const IconSize = 30;
+import { cloneElement } from "react";
+
+const NewNoteMenuItem = ({
+	activateView,
+	activeNote,
+	label,
+	iconComponent,
+}: {
+	activateView: (view: NoteView) => void;
+	activeNote: string;
+	label: NoteView;
+	iconComponent: JSX.Element;
+}) => {
+	const clonedComponent = cloneElement(iconComponent, {
+		size: 30,
+		className: `${IconStyle} m-4`,
+	});
+
+	return (
+		<>
+			{activeNote !== label && (
+				<MenuItem>
+					<Button onClick={() => activateView(label)}>{clonedComponent}</Button>
+				</MenuItem>
+			)}
+		</>
+	);
+};
+
+const MenuItemsData: { label: NoteView; iconComponent: JSX.Element }[] = [
+	{
+		label: "note",
+		iconComponent: <FiAlignLeft />,
+	},
+	{
+		label: "calendar",
+		iconComponent: <FiCalendar />,
+	},
+	{
+		label: "table",
+		iconComponent: <FiTable />,
+	},
+	{
+		label: "draw",
+		iconComponent: <FiPenTool />,
+	},
+	{
+		label: "music",
+		iconComponent: <FiMusic />,
+	},
+	{
+		label: "chart",
+		iconComponent: <FiBarChart2 />,
+	},
+	{
+		label: "map",
+		iconComponent: <FiMap />,
+	},
+];
+
 export const NewNote = ({
 	placeIn,
 	activateView,
-}: { placeIn: PlaceIn; activateView: (view: NoteView) => void }) => (
+	activeNote,
+}: {
+	placeIn: PlaceIn;
+	activateView: (view: NoteView) => void;
+	activeNote: NoteView;
+}) => (
 	<div className={`${placeInStyle(placeIn)} flex flex-col-reverse`}>
 		<Menu>
 			<MenuButton>
-				<FaPencilAlt size={IconSize} />
+				<FaPencilAlt size={30} />
 			</MenuButton>
 			<MenuItems anchor="bottom">
-				<MenuItem>
-					<Button onClick={() => activateView("note")}>
-						<FiAlignLeft size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("calendar")}>
-						<FiCalendar size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("table")}>
-						<FiTable size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("draw")}>
-						<FiPenTool size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("music")}>
-						<FiMusic size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("chart")}>
-						<FiBarChart2 size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
-				<MenuItem>
-					<Button onClick={() => activateView("map")}>
-						<FiMap size={IconSize} className={`${IconStyle} m-4`} />
-					</Button>
-				</MenuItem>
+				{MenuItemsData.map((item) => (
+					<NewNoteMenuItem
+						key={crypto.randomUUID()}
+						activateView={activateView}
+						activeNote={activeNote}
+						label={item.label}
+						iconComponent={item.iconComponent}
+					/>
+				))}
 			</MenuItems>
 		</Menu>
 	</div>

@@ -15,7 +15,7 @@ import type { NoteView } from "@/types/views";
 
 import { FileView } from "./components/FileView";
 import { NewNote } from "./components/NewNote";
-import { Wysiwyg } from "./components/NoteEditorView";
+import { NoteEditorView } from "./components/NoteEditorView";
 import { EventEditorView } from "./components/EventEditorView";
 import { Settings } from "./components/Settings";
 
@@ -51,12 +51,13 @@ function App() {
 			<div className="h-full w-full p-4">
 				<FileView />
 				{view === "note" ? (
-					<Wysiwyg />
+					<NoteEditorView />
 				) : view === "calendar" ? (
 					<EventEditorView />
 				) : null}
 				<Settings placeIn="bottom-left" />
 				<NewNote
+					activeNote={view}
 					placeIn="bottom-right"
 					activateView={(view: NoteView) => setView(view)}
 				/>
