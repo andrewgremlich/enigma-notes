@@ -11,14 +11,16 @@ import {
 import { invoke } from "@tauri-apps/api/tauri";
 import { useState } from "react";
 
+import type { NoteView } from "@/types/views";
+
 import { FileView } from "./components/FileView";
 import { NewNote } from "./components/NewNote";
 import { Wysiwyg } from "./components/NoteEditorView";
+import { EventEditorView } from "./components/EventEditorView";
 import { Settings } from "./components/Settings";
-import type { NoteView } from "./types/views";
 
 function App() {
-	const [view, setView] = useState<NoteView>("note");
+	const [view, setView] = useState<NoteView>("calendar");
 
 	async function appDirs() {
 		// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -48,9 +50,16 @@ function App() {
 		<>
 			<div className="h-full w-full p-4">
 				<FileView />
-				{view === "note" ? <Wysiwyg /> : null}
+				{view === "note" ? (
+					<Wysiwyg />
+				) : view === "calendar" ? (
+					<EventEditorView />
+				) : null}
 				<Settings placeIn="bottom-left" />
-				<NewNote placeIn="bottom-right" />
+				<NewNote
+					placeIn="bottom-right"
+					activateView={(view: NoteView) => setView(view)}
+				/>
 			</div>
 		</>
 	);

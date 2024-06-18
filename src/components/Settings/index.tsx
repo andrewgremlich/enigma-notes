@@ -17,6 +17,7 @@ import { FiSettings } from "react-icons/fi";
 
 import { type PlaceIn, placeInStyle } from "@/utils/style";
 import { FeatureFlags } from "./FeatureFlags";
+import { SaveLocations } from "./SaveLocations";
 
 export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,7 @@ export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 
 							<TabGroup>
 								<TabList className="mb-10 p-2 border-b-2 flex justify-between">
-									{["Feature Flags", "Tab 2", "Tab 3"].map((tab) => (
+									{["Feature Flags", "Save Locations", "Backup Options"].map((tab) => (
 										<Tab
 											key={crypto.randomUUID()}
 											className="dark:hover:text-amber-300 hover:text-amber-700 transition-all"
@@ -63,12 +64,19 @@ export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 									<TabPanel>
 										<FeatureFlags />
 									</TabPanel>
-									<TabPanel>Content 2</TabPanel>
+									<TabPanel>
+										<SaveLocations />
+									</TabPanel>
 									<TabPanel>Content 3</TabPanel>
 								</TabPanels>
 							</TabGroup>
 
-							<Button className="mt-10 dark:hover:text-amber-300 hover:text-amber-700 border-2 px-4 py-2 rounded-lg" onClick={() => setIsOpen(false)}>Close</Button>
+							<Button
+								className="mt-10 dark:hover:text-amber-300 hover:text-amber-700 border-2 px-4 py-2 rounded-lg"
+								onClick={() => setIsOpen(false)}
+							>
+								Close
+							</Button>
 						</DialogPanel>
 					</div>
 				</Dialog>
