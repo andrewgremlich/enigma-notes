@@ -20,7 +20,7 @@ import { EventEditorView } from "./components/EventEditorView";
 import { Settings } from "./components/Settings";
 
 function App() {
-	const [view, setView] = useState<NoteView>("calendar");
+	const [view, setView] = useState<NoteView>("note");
 
 	async function appDirs() {
 		// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command

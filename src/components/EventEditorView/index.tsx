@@ -7,6 +7,7 @@ import {
 	defaultNoteStyle,
 } from "@/utils/style";
 
+import { TagNote } from "../NoteParts/TagNote";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
 
 const DefaultEventData = {
@@ -53,6 +54,8 @@ export const EventEditorView = () => {
 				</article>
 
 				<Wysiwyg />
+
+				<TagNote />
 			</form>
 		</div>
 	);

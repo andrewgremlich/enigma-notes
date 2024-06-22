@@ -3,6 +3,8 @@ import { ReactTags, type Tag } from "react-tag-autocomplete";
 
 import { defaultNotePartStyle } from "@/utils/style";
 
+import "./style.css";
+
 function isValid(value: string) {
 	return /^[a-z]{4,12}$/i.test(value);
 }
@@ -69,7 +71,6 @@ export const TagNote = () => {
 				allowNew
 				ariaDescribedBy="note-tags"
 				collapseOnSelect
-				labelText="Tag Note"
 				onAdd={onAdd}
 				onDelete={onDelete}
 				onValidate={onValidate}
@@ -77,12 +78,6 @@ export const TagNote = () => {
 				suggestions={[]}
         // renderTagList={CustomTagList}
 			/>
-			<p id="custom-tags-description" style={{ color: "gray" }}>
-				<em>
-					Tags must be between 4 and 12 characters in length and only contain
-					the letters A-Z
-				</em>
-			</p>
 		</aside>
 	);
 };
