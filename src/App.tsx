@@ -7,6 +7,8 @@ import {
 	appLocalDataDir,
 	appLogDir,
 	cacheDir as cacheDir2,
+	dataDir,
+	localDataDir,
 } from "@tauri-apps/api/path";
 import { invoke } from "@tauri-apps/api/tauri";
 import { useState } from "react";
@@ -44,7 +46,11 @@ function App() {
 		console.log("Log dir:", logDir);
 		console.log("Local data dir:", localDataDir);
 		console.log("Cache dir 2:", cacheDir2string);
+		console.log("Data dir:", dataDir);
+		console.log("Local data dir:", localDataDir);
 	};
+
+	// showPaths();
 
 	return (
 		<>

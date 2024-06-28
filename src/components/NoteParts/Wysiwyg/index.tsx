@@ -18,13 +18,14 @@ import { HeadingElement, CodeElement, Leaf } from "./wysiwyg-elements";
 
 type WywsiwygProps = {
 	className?: string;
+	updateNote: (note: string) => void;
 };
 
 //TODO:
 // https://www.slatejs.org/examples/markdown-preview
 // https://github.com/ianstormtaylor/slate/blob/main/site/examples/markdown-shortcuts.tsx
 
-export const Wysiwyg = ({ className }: WywsiwygProps) => {
+export const Wysiwyg = ({ className, updateNote }: WywsiwygProps) => {
 	const [editor] = useState(() => withReact(createEditor()));
 	const renderElement = useCallback((props: RenderElementProps) => {
 		switch (props.element.type) {
@@ -60,6 +61,7 @@ export const Wysiwyg = ({ className }: WywsiwygProps) => {
 					);
 
 					if (isAstChange) {
+						updateNote(JSON.stringify(value));
 						// Save the value to Local Storage.
 						localStorage.setItem("content", JSON.stringify(value));
 						// localStorage.setItem("content", serialize(value));
