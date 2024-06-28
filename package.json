@@ -32,8 +32,7 @@
     "slate-history": "^0.100.0",
     "slate-react": "^0.105.0",
     "textarea-selection-bounds": "^3.0.2",
-    "use-debounce": "^10.0.1",
-    "use-editable": "^2.3.3"
+    "use-debounce": "^10.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
