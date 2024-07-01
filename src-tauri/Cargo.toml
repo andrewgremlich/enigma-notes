@@ -11,9 +11,20 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = [ "fs-write-file", "path-all", "shell-open"] }
+tauri = { version = "1", features = [ "shell-open", "path-all", "fs-write-file",
+] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+aes-gcm = "0.10.3"
+argon2 = "0.5.3"
+hex = "0.4.3"
+rand = "0.8.5"
+bcrypt = "0.15.1"
+
+[dependencies.tauri-plugin-sql]
+git = "https://github.com/tauri-apps/plugins-workspace"
+branch = "v1"
+features = ["sqlite"] # or "postgres", or "mysql"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

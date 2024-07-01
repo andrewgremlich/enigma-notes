@@ -8,13 +8,16 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri:dev": "tauri dev",
-    "check": "biome check --apply src"
+    "check": "biome check --apply src",
+    "clean": "rm -rf ~/Library/Application\\ Support/me.gremlich.enigma-notes/"
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@tauri-apps/api": "^1",
     "@types/sanitize-html": "^2.11.0",
     "chart.js": "^4.4.3",
+    "dexie": "^4.0.7",
+    "dexie-react-hooks": "^1.1.7",
     "enigma": "^1.1.2",
     "is-hotkey": "^0.2.0",
     "is-image": "^4.0.0",
@@ -31,6 +34,7 @@
     "slate": "^0.103.0",
     "slate-history": "^0.100.0",
     "slate-react": "^0.105.0",
+    "tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql#v1",
     "textarea-selection-bounds": "^3.0.2",
     "use-debounce": "^10.0.1"
   },

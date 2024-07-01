@@ -1,79 +1,56 @@
 import { Button } from "@headlessui/react";
 import { useReducer } from "react";
 import { FiAlignLeft, FiDatabase } from "react-icons/fi";
-import type { Tag } from "react-tag-autocomplete";
+import { useLiveQuery } from "dexie-react-hooks";
 
 import { defaultNoteStyle } from "@/utils/style";
+import { openDatabase } from "@/db/init";
 
 import { TagNote } from "../NoteParts/TagNote";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
-
-type NoteEditorViewState = {
-	note: string;
-	tags: Tag[];
-	metadata: {
-		created: number;
-		modified: number;
-	};
-	error?: string;
-};
-
-type NoteEditorViewAction =
-	| { type: "UPDATE_NOTE"; payload: string }
-	| { type: "UPDATE_TAGS"; payload: Tag }
-	| { type: "REMOVE_TAG"; payload: Tag };
-
-const noteEditorViewReducer = (
-	state: NoteEditorViewState,
-	action: NoteEditorViewAction,
-): NoteEditorViewState => {
-	const { type } = action;
-
-	switch (type) {
-		case "UPDATE_NOTE":
-			return { ...state, note: action.payload };
-		case "UPDATE_TAGS":
-			return { ...state, tags: [...state.tags, action.payload] };
-		// TODO: make tags part of a set?
-		case "REMOVE_TAG":
-			return {
-				...state,
-				tags: state.tags.filter((tag) => tag.value !== action.payload.value),
-			};
-		default:
-			return state;
-	}
-};
-
-const defaultState: NoteEditorViewState = {
-	note: "",
-	tags: [{ value: "tag", label: "tag" }],
-	metadata: {
-		created: new Date().getTime(),
-		modified: new Date().getTime(),
-	},
-};
+import { defaultState, noteEditorViewReducer } from "./state";
 
 export const NoteEditorView = () => {
-	const [state, dispatch] = useReducer(noteEditorViewReducer, defaultState);
+  const getKey = useLiveQuery(
+    () => openDatabase()?.appData.where("key").equals('Hello').toArray() ?? [],
+  );
+  const [state, dispatch] = useReducer(noteEditorViewReducer, defaultState);
 
-	console.log(state);
-
-	return (
-		<div className={defaultNoteStyle}>
-			<FiAlignLeft size={40} className="mb-5" />
-			<Wysiwyg
-				className="min-h-96"
-				updateNote={(note) => dispatch({ type: "UPDATE_NOTE", payload: note })}
-			/>
-			<TagNote
-				updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}
-				removeTag={(tag) => dispatch({ type: "REMOVE_TAG", payload: tag })}
-				tags={state.tags}
-			/>
-			<Button onClick={() => console.log("openmetadata")}>
-				<FiDatabase size={40} className="mt-5" />
-			</Button>
-		</div>
-	);
+  // TODO: a way to write the file in the right spot. then think of a way for encryption.
+  // TODO: and exporter to MD, Word, PDF
+  return (
+    <div className={defaultNoteStyle}>
+      <h3>Test IndexDB</h3>
+      <ul>
+        {getKey?.map((f) => (
+          <li key={f.id}>
+            key: {f.key}, value: {f.value}
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        onClick={() => {
+					console.log("add key/val")
+          openDatabase()?.appData.add({ key: "Hello", value: "World" });
+        }}
+      >
+        Add Key/Val
+      </button>
+      <FiAlignLeft size={40} className="mb-5" />
+      <Wysiwyg
+        className="min-h-96"
+        updateNote={(note) => dispatch({ type: "UPDATE_NOTE", payload: note })}
+      />
+      <TagNote
+        updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}
+        removeTag={(tag) => dispatch({ type: "REMOVE_TAG", payload: tag })}
+        tags={state.tags}
+      />
+      <Button onClick={() => console.log("openmetadata")}>
+        <FiDatabase size={40} className="mt-5" />
+      </Button>
+    </div>
+  );
 };

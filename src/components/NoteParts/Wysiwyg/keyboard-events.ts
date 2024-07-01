@@ -16,35 +16,37 @@ export const KeyboardShortcuts =
       EditorActions.toggleBlockquote(editor);
     }
 
-    if (isHotkey("mod+`", event)) {
+    if (isHotkey("mod+shift+`", event)) {
       EditorActions.toggleCodeBlock(editor);
     }
 
-    if (isHotkey("mod+b", event)) {
+    if (isHotkey("mod+shift+b", event)) {
       EditorActions.toggleBoldMark(editor);
     }
 
-    if (isHotkey("mod+i", event)) {
+    if (isHotkey("mod+shift+i", event)) {
       EditorActions.toggleItalicMark(editor);
     }
 
-    if (isHotkey("mod+u", event)) {
+    if (isHotkey("mod+shift+u", event)) {
+      console.log("u")
       EditorActions.toggleUnderlinedMark(editor);
     }
 
-    if (isHotkey("mod+1", event)) {
+    if (isHotkey("mod+shift+1", event)) {
+      console.log("h1")
       EditorActions.toggleHeading(editor, 1);
     }
 
-    if (isHotkey("mod+2", event)) {
+    if (isHotkey("mod+shift+2", event)) {
       EditorActions.toggleHeading(editor, 2);
     }
 
-    if (isHotkey("mod+3", event)) {
+    if (isHotkey("mod+shift+3", event)) {
       EditorActions.toggleHeading(editor, 3);
     }
 
-    if (isHotkey("mod+4", event)) {
+    if (isHotkey("mod+shift+4", event)) {
       EditorActions.toggleHeading(editor, 4);
     }
 
