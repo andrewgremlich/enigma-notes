@@ -1,0 +1,164 @@
+.react-tags {
+  /* shared font styles */
+  font-size: 1rem;
+  line-height: 1.2;
+
+  @apply dark:bg-slate-800
+          bg-slate-100
+          border
+          border-slate-100
+          rounded-lg
+          border-solid
+          cursor-text
+          pt-1
+          pl-1
+          relative;
+}
+
+.react-tags.is-active {
+  @apply border-slate-500;
+}
+
+.react-tags.is-disabled {
+  @apply opacity-75 bg-slate-100 pointer-events-none cursor-not-allowed;
+}
+
+.react-tags.is-invalid {
+  @apply border-red-500 shadow-red-400;
+}
+
+.react-tags__label {
+  @apply absolute left-[-10000px] top-auto w-1 h-1 overflow-hidden;
+}
+
+.react-tags__list {
+  @apply inline p-0;
+}
+
+.react-tags__list-item {
+  @apply inline list-none;
+}
+
+.react-tags__tag {
+  @apply m-0 mr-1 mb-1 px-3 py-2 border-0 rounded-md bg-gray-200 dark:bg-gray-900;
+  /* match the font styles */
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.react-tags__tag:hover {
+  @apply text-slate-900 dark:text-slate-50 bg-slate-300 dark:bg-slate-700;
+}
+
+.react-tags__tag::after {
+  content: "";
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  clip-path: polygon(
+    10% 0,
+    0 10%,
+    40% 50%,
+    0 90%,
+    10% 100%,
+    50% 60%,
+    90% 100%,
+    100% 90%,
+    60% 50%,
+    100% 10%,
+    90% 0,
+    50% 40%
+  );
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+
+  @apply bg-slate-600;
+}
+
+.react-tags__tag:hover::after {
+  @apply bg-slate-100 dark:bg-slate-900;
+}
+
+.react-tags__combobox {
+  @apply inline-block p-1 mb-1 max-w-full;
+}
+
+.react-tags__combobox-input {
+  @apply max-w-full m-0 p-0 border-0 outline-none bg-transparent text-base leading-6;
+}
+
+.react-tags__combobox-input::placeholder {
+  @apply text-slate-500;
+}
+
+.react-tags__listbox {
+  @apply absolute 
+          shadow-md 
+          bg-slate-50 
+          dark:bg-slate-950 
+          border border-solid 
+          border-slate-500 
+          overflow-y-auto 
+          z-10 
+          top-full 
+          mt-1 
+          left-0 
+          right-0 
+          max-h-32 
+          rounded-md;
+}
+
+.react-tags__listbox-option {
+  @apply py-1.5 px-2;
+}
+
+.react-tags__listbox-option:hover {
+  @apply bg-slate-400 dark:bg-slate-800 cursor-pointer;
+}
+
+.react-tags__listbox-option:not([aria-disabled="true"]).is-active {
+  @apply bg-indigo-600 text-white;
+}
+
+.react-tags__listbox-option[aria-disabled="true"] {
+  @apply text-gray-500 cursor-not-allowed pointer-events-none;
+}
+
+.react-tags__listbox-option[aria-selected="true"]::after {
+  content: "✓";
+  @apply ml-2;
+}
+
+.react-tags__listbox-option[aria-selected="true"]:not(.is-active)::after {
+  @apply text-indigo-600;
+}
+
+.react-tags__listbox-option-highlight {
+  @apply bg-yellow-200;
+}
+
+.tag-group {
+  @apply flex
+          flex-col
+          flex-wrap
+          items-start
+          p-2
+          gap-2
+          bg-slate-100
+          dark:bg-slate-900
+          m-1
+          justify-start
+          border
+          border-solid
+          border-gray-300
+          dark:border-gray-700
+          rounded-md;
+}
+
+.tag-group ul {
+  @apply m-0 p-0;
+}
+
+.tag-group > p {
+  @apply m-0 text-xs leading-6 text-slate-100 dark:text-slate-900;
+}
