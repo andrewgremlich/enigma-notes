@@ -11,21 +11,27 @@ import { AccountNotesViewStyle } from "./style";
 export type AccountNotesViewType = "calendar" | "file-explorer";
 
 export const AccountNotesView = () => {
-  const [accountNotesViewType, setAccountNotesViewType] =
+  const [accountNotesView, setAccountNotesView] =
     useState<AccountNotesViewType>("calendar");
 
   return (
-    <Resizable minWidth={200} maxWidth={400} className={`${AccountNotesViewStyle}`}>
+    <aside className="bg-slate-800">
       <ViewerType
-        setView={(type) => setAccountNotesViewType(type)}
-        view={accountNotesViewType}
+        setView={(type) => setAccountNotesView(type)}
+        view={accountNotesView}
       />
-      {accountNotesViewType === "calendar" ? (
-        <CalendarViewerContents data={calendarViewData} />
-      ) : (
-        <TreeViewerContents data={accountNotesViewData} />
-      )}
+      <Resizable
+        minWidth={200}
+        maxWidth={400}
+        className={`${AccountNotesViewStyle}`}
+      >
+        {accountNotesView === "calendar" ? (
+          <CalendarViewerContents data={calendarViewData} />
+        ) : (
+          <TreeViewerContents data={accountNotesViewData} />
+        )}
+      </Resizable>
       <Settings placeIn="bottom-left" />
-    </Resizable>
+    </aside>
   );
 };

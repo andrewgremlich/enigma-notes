@@ -7,7 +7,6 @@ import {
   FiTable,
 } from "react-icons/fi";
 
-import { IconStyle } from "@/utils/style";
 import { defaultSettingsState } from "./state";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
@@ -16,6 +15,7 @@ import {
   toggleFeatureFlag,
 } from "@/db/appData";
 import type { FeatureFlag } from "@/db/types";
+import { IconWrapper } from "../Style";
 
 export const FeatureFlags = () => {
   const getFeatureFlags = useQuery({
@@ -51,31 +51,51 @@ export const FeatureFlags = () => {
     <div>
       {[
         {
-          icon: <FiTable size={20} className={`${IconStyle} mx-2`} />,
+          icon: (
+            <IconWrapper>
+              <FiTable size={20} />
+            </IconWrapper>
+          ),
           label: "Data Table",
           state: state.has("table") ? state.get("table") : false,
           action: () => toggleFeatureFlagMutation.mutate("table"),
         },
         {
-          icon: <FiPenTool size={20} className={`${IconStyle} mx-2`} />,
+          icon: (
+            <IconWrapper>
+              <FiPenTool size={20} />
+            </IconWrapper>
+          ),
           label: "Drawing",
           state: state.has("draw") ? state.get("draw") : false,
           action: () => toggleFeatureFlagMutation.mutate("draw"),
         },
         {
-          icon: <FiMusic size={20} className={`${IconStyle} mx-2`} />,
+          icon: (
+            <IconWrapper>
+              <FiMusic size={20} />
+            </IconWrapper>
+          ),
           label: "Music Notation",
           state: state.has("music") ? state.get("music") : false,
           action: () => toggleFeatureFlagMutation.mutate("music"),
         },
         {
-          icon: <FiBarChart2 size={20} className={`${IconStyle} mx-2`} />,
+          icon: (
+            <IconWrapper>
+              <FiBarChart2 size={20} />
+            </IconWrapper>
+          ),
           label: "Charts",
           state: state.has("chart") ? state.get("chart") : false,
           action: () => toggleFeatureFlagMutation.mutate("chart"),
         },
         {
-          icon: <FiMap size={20} className={`${IconStyle} mx-2`} />,
+          icon: (
+            <IconWrapper>
+              <FiMap size={20} />
+            </IconWrapper>
+          ),
           label: "Maps",
           state: state.has("map") ? state.get("map") : false,
           action: () => toggleFeatureFlagMutation.mutate("map"),

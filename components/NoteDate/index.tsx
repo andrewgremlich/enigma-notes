@@ -1,6 +1,6 @@
-import { Input, Label, Field } from "@headlessui/react";
+import { Label, Field } from "@headlessui/react";
 
-import { defaultInputStyle, defaultNotePartStyle } from "@/utils/style";
+import { Aside, Input } from "../Style";
 
 const DefaultEventData = {
   title: "",
@@ -17,13 +17,13 @@ export const NoteDate = () => {
         console.log("form submission!");
       }}
     >
-      <article className={defaultNotePartStyle}>
+      <Aside>
         <aside className="flex justify-evenly">
           <Field>
             <Label>Start Date</Label>
             <Input
               id="note-start-date"
-              className={`${defaultInputStyle} grow dark:bg-gray-700 mr-6`}
+              className="grow dark:bg-gray-700 mr-6"
               name="start"
               type="datetime-local"
               placeholder="Start date"
@@ -34,7 +34,7 @@ export const NoteDate = () => {
             <Label>End Date</Label>
             <Input
               id="note-end-date"
-              className={`${defaultInputStyle} grow dark:bg-gray-700`}
+              className="grow dark:bg-gray-700"
               name="end"
               type="datetime-local"
               placeholder="End date"
@@ -42,7 +42,7 @@ export const NoteDate = () => {
             />
           </Field>
         </aside>
-      </article>
+      </Aside>
     </form>
   );
 };

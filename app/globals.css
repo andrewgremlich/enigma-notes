@@ -3,31 +3,70 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary: rebeccapurple; /* Track color */
+  --secondary: cornflowerblue; /* Thumb color */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Firefox */
+* {
+  scrollbar-width: thin; /* Options: auto, thin */
+  scrollbar-color: var(--secondary) var(--primary); /* thumb color, track color */
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px; /* Width of the scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary); /* Track color */
+  border-radius: 5px; /* Track border radius */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary); /* Thumb color */
+  border-radius: 14px; /* Thumb border radius */
+  border: 3px solid var(--primary); /* Thumb border */
+}
+
+html,
+body,
+#root {
+  @apply h-full;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+  @apply text-xl font-bold;
+}
+
+h4 {
+  @apply text-lg font-bold;
+}
+
+h5 {
+  @apply text-base font-bold;
+}
+
+h6 {
+  @apply text-sm font-bold;
+}
+
+p {
+  @apply text-base;
+}
+
+a {
+  @apply text-blue-500 dark:text-blue-400 underline;
 }

@@ -1,24 +1,27 @@
 import { MenuItem, Button } from "@headlessui/react";
 import { cloneElement } from "react";
 
-import { IconStyle } from "@/utils/style";
+import { IconWrapper } from "../Style";
 
 export const NewNoteMenuItem = ({
   iconComponent,
   activateNoteView,
 }: {
   iconComponent: JSX.Element;
-  activateNoteView: () => void
+  activateNoteView: () => void;
 }) => {
   const clonedComponent = cloneElement(iconComponent, {
     size: 30,
-    className: `${IconStyle} m-4`,
+    className: "m-4",
   });
 
   return (
     <MenuItem>
-      <Button title="Change to a new note type." onClick={() => activateNoteView()}>
-        {clonedComponent}
+      <Button
+        title="Change to a new note type."
+        onClick={() => activateNoteView()}
+      >
+        <IconWrapper>{clonedComponent}</IconWrapper>
       </Button>
     </MenuItem>
   );

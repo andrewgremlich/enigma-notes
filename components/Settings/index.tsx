@@ -16,18 +16,17 @@ import {
 import { useState } from "react";
 import { FiSettings, FiX } from "react-icons/fi";
 
-import { type PlaceIn, placeInStyle } from "@/utils/style";
-
 import { Shade } from "../index";
 
 import { FeatureFlags } from "./FeatureFlags";
 import { SaveLocations } from "./SaveLocations";
+import { type PlaceIn, PositionDiv } from "../Style";
 
 export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div className={`${placeInStyle(placeIn)}`}>
+		<PositionDiv placeIn={placeIn}>
 			<Button onClick={() => setIsOpen(true)}>
 				<FiSettings className="cursor-pointer" size={30} />
 			</Button>
@@ -86,6 +85,6 @@ export const Settings = ({ placeIn }: { placeIn: PlaceIn }) => {
 					</div>
 				</Dialog>
 			</Transition>
-		</div>
+		</PositionDiv>
 	);
 };

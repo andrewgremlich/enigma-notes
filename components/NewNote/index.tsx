@@ -5,22 +5,22 @@ import {
   Button,
   MenuItem,
 } from "@headlessui/react";
+import { cloneElement } from "react";
+import { FiPenTool, FiPlus } from "react-icons/fi";
 
-import { IconStyle, type PlaceIn, placeInStyle } from "@/utils/style";
 import type { FeatureFlag } from "@/db/types";
 
 import { MenuItemsData } from "./MenuItemsData";
 import { NewNoteMenuItem } from "./NewNoteMenuItem";
-import { cloneElement } from "react";
-import { FiPenTool, FiPlus } from "react-icons/fi";
+import { IconWrapper, type PlaceIn, PositionDiv } from "../Style";
 
 const cloneAndFindIcon = (label: FeatureFlag) =>
   cloneElement(
     MenuItemsData.find(({ label: itemLabel }) => itemLabel === label)
-      ?.iconComponent ?? <FiPenTool size={30} className={IconStyle} />,
+      ?.iconComponent ?? <FiPenTool size={30} />,
     {
       size: 30,
-      className: `${IconStyle} mr-2`,
+      className: "mr-2",
     },
   );
 
@@ -35,18 +35,20 @@ export const NewNote = ({
     label: FeatureFlag,
   ) => Promise<string | number | undefined>;
 }) => (
-  <div className={`${placeInStyle(placeIn)}`}>
+  <PositionDiv placeIn={placeIn}>
     <Menu>
       <MenuButton className="flex">
-        {activeNoteView === "note"
-          ? cloneAndFindIcon(activeNoteView)
-          : activeNoteView === "table"
+        <IconWrapper>
+          {activeNoteView === "note"
             ? cloneAndFindIcon(activeNoteView)
-            : (console.error(
-                "NewNote/index.ts: You have clicked an unsupported note type.",
-                // biome-ignore lint/style/noCommaOperator: This is error handling for unsupported note type.
-              ),
-              cloneAndFindIcon(activeNoteView))}
+            : activeNoteView === "table"
+              ? cloneAndFindIcon(activeNoteView)
+              : (console.error(
+                  "NewNote/index.ts: You have clicked an unsupported note type.",
+                  // biome-ignore lint/style/noCommaOperator: This is error handling for unsupported note type.
+                ),
+                cloneAndFindIcon(activeNoteView))}
+        </IconWrapper>
       </MenuButton>
       <MenuItems
         anchor="top"
@@ -73,5 +75,5 @@ export const NewNote = ({
         )}
       </MenuItems>
     </Menu>
-  </div>
+  </PositionDiv>
 );

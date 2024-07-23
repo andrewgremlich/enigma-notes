@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { ReactTags, type Tag } from "react-tag-autocomplete";
 
-import { defaultNotePartStyle } from "@/utils/style";
+import { Aside } from "@/components/Style";
 
 import "./style.css";
 
@@ -88,7 +88,7 @@ export const TagNote = ({ removeTag, updateTags, tags }: TagNoteProps) => {
   // };
 
   return (
-    <aside className={defaultNotePartStyle}>
+    <Aside>
       <ReactTags
         allowNew
         ariaDescribedBy="note-tags"
@@ -99,6 +99,6 @@ export const TagNote = ({ removeTag, updateTags, tags }: TagNoteProps) => {
         suggestions={[]}
         // renderTagList={CustomTagList}
       />
-    </aside>
+    </Aside>
   );
 };

@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
+    "prebuild": "next telemetry disable",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "tsc": "tsc -p ./tsconfig.json",
+    "postinstall": "next telemetry disable"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",

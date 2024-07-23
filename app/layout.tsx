@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import Providers from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 // const queryClient = new QueryClient();
 
 // TODO: check to see if there is account related data. If not the show "create account" option.
@@ -36,7 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        {/* <body className={inter.className}> */}
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,17 +1,16 @@
 import { useReducer } from "react";
 
-import { defaultNoteStyle } from "@/utils/style";
-
 import { TagNote } from "../NoteParts/TagNote";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
 import { defaultState, noteEditorViewReducer } from "./state";
 import { NoteDate } from "../NoteDate";
+import { NoteArticle } from "../Style";
 
 export const NoteEditorView = () => {
   const [state, dispatch] = useReducer(noteEditorViewReducer, defaultState);
 
   return (
-    <div className={`${defaultNoteStyle}`}>
+    <NoteArticle>
       <Wysiwyg
         className="min-h-96"
         updateNote={(note) => dispatch({ type: "UPDATE_NOTE", payload: note })}
@@ -22,6 +21,6 @@ export const NoteEditorView = () => {
         tags={state.tags}
       />
       <NoteDate />
-    </div>
+    </NoteArticle>
   );
 };

@@ -15,7 +15,7 @@ export const CalendarViewerContents = ({
 	return (
 		<div>
 			{data.map(({ dateCreated, data }, index) => (
-				<Fragment key={self.crypto.randomUUID()}>
+				<Fragment key={crypto.randomUUID()}>
 					<div className="p-4">
 						<h2>{dateCreated}</h2>
 						<p>{data}</p>
