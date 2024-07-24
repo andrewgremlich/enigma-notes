@@ -4,13 +4,24 @@ import Providers from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
 
-// TODO: check to see if there is account related data. If not the show "create account" option.
-// assure that everything is offline first and the account related info is to encrypt the notes.
-// "create account" can be as little as a PIN or a password for encryption.
+// TODO: Explain more how the encryption works and how the app prefers to go.
+
+// TODO: warn if no crypto key is set on the editor page.
+
+// TODO: Make Settings it's own page.
+
+// TODO: Mobile friendly.
+
+// TODO: location metadata for notes.
+
+// TODO: Weather metadata for notes.
 
 // TODO: you have a folder structure existing, change it to be the many journals or tags.
+// set up a hierarchal structure of notes.
 
 // TODO: be sure to make a breadcrumb trail.
+
+// TODO: make note editor functioning.
 
 // TODO: support pictures and note linking.
 // https://dev.to/koralarts/slatejs-adding-images-and-links-2g93

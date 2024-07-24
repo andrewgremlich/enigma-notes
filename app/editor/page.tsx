@@ -11,8 +11,6 @@ import type { FeatureFlag } from "@/db/types";
 export default function Home() {
   const activeNoteView = useLiveQuery(() => getActiveNoteFromAppData());
 
-  // TODO: warn if no crypto key is set.
-
   return (
     <main className="h-full w-full flex">
       <AccountNotesView />
