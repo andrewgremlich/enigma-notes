@@ -4,22 +4,21 @@ import Providers from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
 
+// TODO: Make Settings it's own page.
+
+// TODO: Mobile friendly.
+
 // TODO: Explain more how the encryption works and how the app prefers to go.
 
 // TODO: double check potential recovery options? Do I need to store password hash and salt anywhere? prompt the user to save the salt and hash?
 
 // TODO: warn if no crypto key is set on the editor page.
 
-// TODO: Make Settings it's own page.
-
-// TODO: Mobile friendly.
-
 // TODO: location metadata for notes.
 
 // TODO: Weather metadata for notes.
 
-// TODO: you have a folder structure existing, change it to be the many journals or tags.
-// set up a hierarchal structure of notes.
+// TODO: you have a folder structure existing, change it to be the many journals or tags. set up a hierarchal structure of notes.
 
 // TODO: be sure to make a breadcrumb trail.
 

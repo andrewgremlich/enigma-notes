@@ -1,5 +1,7 @@
 import { type Props, cleanStyleForInlineJsx } from ".";
 
+export const Hr = () => <hr className="mb-5" />;
+
 export const NoteArticle = <T extends {}>({
   children,
   className,

@@ -48,7 +48,8 @@ export const FeatureFlags = () => {
   return getFeatureFlags.isLoading ? (
     <div>Loading...</div>
   ) : (
-    <div>
+    <div className="mb-10">
+      <h2>Feature Flags</h2>
       {[
         {
           icon: (

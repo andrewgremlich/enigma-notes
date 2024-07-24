@@ -7,13 +7,7 @@ import type { FormEventHandler } from "react";
 
 import { getCryptoKey, setCryptoKey } from "@/db/appData";
 import { Input, PrimaryButton } from "@/components/Style";
-import {
-  decryptData,
-  encryptData,
-  getKeyFromPassword,
-  getSalt,
-  hashData,
-} from "@/util/crypto";
+import { getKeyFromPassword, getSalt, hashData } from "@/util/crypto";
 
 export default function Home() {
   const router = useRouter();

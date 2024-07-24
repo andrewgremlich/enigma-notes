@@ -46,36 +46,35 @@ export async function hashData(data: BufferSource) {
 }
 
 export async function encryptData(plaintext: string, key: CryptoKey) {
-  const enc = new TextEncoder();
   const iv = window.crypto.getRandomValues(new Uint8Array(12));
 
-  const ciphertext = await window.crypto.subtle.encrypt(
+  const cipherTextBuffer = await window.crypto.subtle.encrypt(
     {
       name: "AES-GCM",
       iv: iv,
     },
     key,
-    enc.encode(plaintext)
+    new TextEncoder().encode(plaintext)
   );
-
-  return { ciphertext, iv };
+  return {
+    iv: Buffer.from(iv).toString("base64"),
+    cipherText: Buffer.from(cipherTextBuffer).toString("base64"),
+  };
 }
 
 export async function decryptData(
-  ciphertext: BufferSource,
-  key: CryptoKey,
-  iv: Uint8Array
+  ciphertext: string,
+  iv: string,
+  key: CryptoKey
 ) {
-  const dec = new TextDecoder();
-
   const decrypted = await window.crypto.subtle.decrypt(
     {
       name: "AES-GCM",
-      iv: iv,
+      iv: Buffer.from(iv, "base64"),
     },
     key,
-    ciphertext
+    Buffer.from(ciphertext, "base64")
   );
 
-  return dec.decode(decrypted);
+  return new TextDecoder().decode(decrypted);
 }

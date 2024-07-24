@@ -39,20 +39,29 @@ body {
   @apply bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100;
 }
 
+h1,
+h3,
+h4,
+h5,
+h6,
+p {
+  @apply antialiased;
+}
+
 h1 {
-  @apply text-3xl font-bold;
+  @apply text-3xl font-bold mb-5;
 }
 
 h2 {
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold mb-5;
 }
 
 h3 {
-  @apply text-xl font-bold;
+  @apply text-xl font-bold mb-3;
 }
 
 h4 {
-  @apply text-lg font-bold;
+  @apply text-lg font-bold mb-3;
 }
 
 h5 {
