@@ -1,29 +1,83 @@
 "use client";
 
-import { useLiveQuery } from "dexie-react-hooks";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type { FormEventHandler } from "react";
 
-import { AccountNotesView } from "@/components/AccountNotesView";
-import { NoteEditorView } from "@/components/NoteEditorView";
-import { NewNote } from "@/components/NewNote";
-import { getActiveNoteFromAppData, addActiveNoteToAppData } from "@/db/appData";
-import type { FeatureFlag } from "@/db/types";
+import { getCryptoKey, setCryptoKey } from "@/db/appData";
+import { Input, PrimaryButton } from "@/components/Style";
+import {
+  decryptData,
+  encryptData,
+  getKeyFromPassword,
+  getSalt,
+  hashData,
+} from "@/util/crypto";
 
 export default function Home() {
-  const activeNoteView = useLiveQuery(() => getActiveNoteFromAppData());
+  const router = useRouter();
+  const cryptoKey = useQuery({
+    queryKey: ["get", "cryptoKey"],
+    queryFn: async () => {
+      const cryptoKey = await getCryptoKey();
+      return cryptoKey;
+    },
+  });
+
+  console.log(cryptoKey.data);
+  if (cryptoKey.data) {
+    router.push("/editor");
+  }
+
+  const onSubmit: FormEventHandler = async (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target as HTMLFormElement);
+    const passwordBuffer = new TextEncoder().encode(
+      formData.get("encrypting-password") as string,
+    );
+
+    const { hashBuffer } = await hashData(passwordBuffer);
+    const { saltBuffer } = await getSalt();
+    const derivedKey = await getKeyFromPassword(hashBuffer, saltBuffer);
+
+    await setCryptoKey(derivedKey);
+    router.push("/editor");
+  };
+
+  // make this page to query for a password to encrypt the notes.
+  // otherwise go to an editor route.
 
   return (
-    <main className="h-full w-full flex">
-      <AccountNotesView />
-      {activeNoteView?.value === "note" ? (
-        <NoteEditorView />
-      ) : (
-        <NoteEditorView />
+    <main className="max-w-prose m-auto">
+      <h1 className="mt-20 mb-15 text-5xl">Enigma Notes</h1>
+
+      <p className="my-10">
+        A versatile, offline-first, end-to-end encrypted, collaborative note
+        taking application.
+      </p>
+
+      {!cryptoKey.isLoading && cryptoKey.data === undefined && (
+        <>
+          <p className="mb-4">
+            No key detected. Input a password for encrypting your notes.
+          </p>
+
+          <form className="mb-10" onSubmit={onSubmit}>
+            <Input
+              id="encrypting-password"
+              name="encrypting-password"
+              type="password"
+              placeholder="Password"
+            />
+
+            <PrimaryButton type="submit">Set Password</PrimaryButton>
+          </form>
+        </>
       )}
-      <NewNote
-        placeIn="bottom-right"
-        activeNoteView={activeNoteView?.value as FeatureFlag}
-        activateNoteView={(label: FeatureFlag) => addActiveNoteToAppData(label)}
-      />
+
+      <Link href="/editor">Go to Editor without setting a password</Link>
     </main>
   );
 }

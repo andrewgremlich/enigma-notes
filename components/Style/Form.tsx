@@ -1,8 +1,16 @@
-import { Input as HeadlessUiInput } from "@headlessui/react";
+import {
+  Input as HeadlessUiInput,
+  type InputProps,
+  Button,
+  ButtonProps,
+} from "@headlessui/react";
 
 import { cleanStyleForInlineJsx, type Props } from "./index";
 
-export const Input = <T extends {}>({ className, ...rest }: Props<T>) => (
+export const Input = <T extends {}>({
+  className,
+  ...rest
+}: InputProps & Props<T>) => (
   <HeadlessUiInput
     className={`${cleanStyleForInlineJsx(`
 p-2
@@ -24,8 +32,8 @@ ease-in-out
 export const PrimaryButton = <T extends {}>({
   className,
   ...rest
-}: Props<T>) => (
-  <button
+}: ButtonProps & Props<T>) => (
+  <Button
     className={`${cleanStyleForInlineJsx(`
       bg-blue-700
       dark:bg-blue-300

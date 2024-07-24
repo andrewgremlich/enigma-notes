@@ -36,6 +36,26 @@ export const deleteAppData = async (id: string) => {
   }
 };
 
+export const getCryptoKey = async () => {
+  try {
+    return await db?.appData.where("key").equals("cryptoKey").first();
+  } catch (error) {
+    console.error("Error getting app data", error);
+  }
+};
+
+export const setCryptoKey = async (value: CryptoKey) => {
+  try {
+    return await db?.appData.add({
+      key: "cryptoKey",
+      value,
+      id: crypto.randomUUID(),
+    });
+  } catch (error) {
+    console.error("Error setting crypto key", error);
+  }
+};
+
 export const getActiveNoteFromAppData = async () => {
   try {
     return await db?.appData.where("key").equals("activeNote").first();

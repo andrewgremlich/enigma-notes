@@ -1,5 +1,6 @@
 {
   "name": "enigma",
+  "description": "A versatile, offline-first, end-to-end encrypted, collaborative note taking application.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
