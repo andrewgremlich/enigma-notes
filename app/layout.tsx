@@ -6,6 +6,8 @@ import "./globals.css";
 
 // TODO: Explain more how the encryption works and how the app prefers to go.
 
+// TODO: double check potential recovery options? Do I need to store password hash and salt anywhere? prompt the user to save the salt and hash?
+
 // TODO: warn if no crypto key is set on the editor page.
 
 // TODO: Make Settings it's own page.

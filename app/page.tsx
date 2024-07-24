@@ -25,7 +25,6 @@ export default function Home() {
     },
   });
 
-  console.log(cryptoKey.data);
   if (cryptoKey.data) {
     router.push("/editor");
   }
