@@ -23,8 +23,13 @@ export const AccountNotesView = () => {
         setView={(type) => setAccountNotesView(type)}
         view={accountNotesView}
       /> */}
-      <Button className="p-2" type="button" onClick={() => router.push("/settings")}>
-        <FiSettings size={30} />
+      <Button
+        className="flex items-center hover:text-yellow-200 transition-colors duration-200 ease-in mt-3 ml-3"
+        type="button"
+        onClick={() => router.push("/settings")}
+      >
+        <FiSettings className="mr-2" size={30} />
+        Settings
       </Button>
       <Resizable
         minWidth={200}
