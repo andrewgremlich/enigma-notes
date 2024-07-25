@@ -3,7 +3,11 @@ import type { Dexie, EntityTable } from "dexie";
 export type AppData = {
   id: string;
   key: string;
-  value: string | { [key: string]: string | boolean | number } | CryptoKey;
+  value:
+    | string
+    | { [key: string]: string | boolean | number }
+    | CryptoKey
+    | boolean;
 };
 
 export type FeatureFlag =

@@ -1,4 +1,5 @@
 import { db } from "./init";
+import type { AppData } from "./types";
 
 export const addAppData = async (key: string, value: string) => {
   try {
@@ -53,6 +54,43 @@ export const setCryptoKey = async (value: CryptoKey) => {
     });
   } catch (error) {
     console.error("Error setting crypto key", error);
+  }
+};
+
+export const getAllowEndDate = async () => {
+  try {
+    const endDate = await db?.appData
+      .where("key")
+      .equals("allowEndDate")
+      .first();
+
+    if (!endDate) {
+      const addNewDateObj = {
+        key: "allowEndDate",
+        value: true,
+        id: crypto.randomUUID(),
+      };
+
+      await db?.appData.add(addNewDateObj);
+
+      return addNewDateObj;
+    }
+
+    return endDate;
+  } catch (error) {
+    console.error("Error getting app data", error);
+  }
+};
+
+export const setAllowEndDate = async (appData: AppData) => {
+  try {
+    return await db?.appData.update(appData.id, {
+      key: "allowEndDate",
+      value: !appData.value,
+      id: appData.id,
+    });
+  } catch (error) {
+    console.error("Error setting app data", error);
   }
 };
 

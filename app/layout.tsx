@@ -4,15 +4,17 @@ import Providers from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
 
+// TODO: make "end date" optional for notes. it's mainly for reminders and todos.
+
 // TODO: warn if no crypto key is set on the editor page.
-
-// TODO: location metadata for notes.
-
-// TODO: Weather metadata for notes.
 
 // TODO: Mobile friendly.
 
 // TODO: Explain more how the encryption works and how the app prefers to go.
+
+// TODO: location metadata for notes.
+
+// TODO: Weather metadata for notes.
 
 // TODO: double check potential recovery options? Do I need to store password hash and salt anywhere? prompt the user to save the salt and hash?
 
