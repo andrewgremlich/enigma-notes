@@ -15,7 +15,7 @@ export default function Home() {
     queryKey: ["get", "cryptoKey"],
     queryFn: async () => {
       const cryptoKey = await getCryptoKey();
-      return cryptoKey;
+      return cryptoKey ?? false;
     },
   });
 
@@ -51,7 +51,7 @@ export default function Home() {
         taking application.
       </p>
 
-      {!cryptoKey.isLoading && cryptoKey.data === undefined && (
+      {!cryptoKey.isLoading && cryptoKey.data === false && (
         <>
           <p className="mb-4">
             No key detected. Input a password for encrypting your notes.
