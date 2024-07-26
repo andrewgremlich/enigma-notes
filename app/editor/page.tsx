@@ -5,11 +5,11 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { AccountNotesView } from "@/components/AccountNotesView";
 import { NoteEditorView } from "@/components/NoteEditorView";
 import { NewNote } from "@/components/NewNote";
-import { getActiveNoteFromAppData, addActiveNoteToAppData } from "@/db/appData";
+import { getAppData, putAppData } from "@/db/appData";
 import type { FeatureFlag } from "@/db/types";
 
 export default function Home() {
-  const activeNoteView = useLiveQuery(() => getActiveNoteFromAppData());
+  const activeNoteView = useLiveQuery(() => getAppData("activeNoteView"));
 
   return (
     <main className="h-full w-full flex">
@@ -22,7 +22,9 @@ export default function Home() {
       <NewNote
         placeIn="bottom-right"
         activeNoteView={activeNoteView?.value as FeatureFlag}
-        activateNoteView={(label: FeatureFlag) => addActiveNoteToAppData(label)}
+        activateNoteView={(label: FeatureFlag) =>
+          putAppData("activeNoteView", label)
+        }
       />
     </main>
   );

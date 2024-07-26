@@ -2,8 +2,8 @@ import { Label, Field, Checkbox } from "@headlessui/react";
 import { FiCheck } from "react-icons/fi";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { getAllowEndDate, setAllowEndDate } from "@/db/appData";
-import type { AppData } from "@/db/types";
+import { getAppData, putAppData } from "@/db/appData";
+import type { AppDataValue } from "@/db/types";
 import { Aside, Input } from "@/components/Style";
 
 const DefaultEventData = {
@@ -16,10 +16,13 @@ const DefaultEventData = {
 export const NoteDate = () => {
   const enabledEndDate = useQuery({
     queryKey: ["get", "enabledEndDate"],
-    queryFn: async () => await getAllowEndDate(),
+    queryFn: async () => {
+      const allowEndDate = await getAppData("allowEndDate");
+      return allowEndDate?.value ?? false;
+    },
   });
   const toggleEnabledEndDate = useMutation({
-    mutationFn: (value: AppData) => setAllowEndDate(value),
+    mutationFn: (value: AppDataValue) => putAppData("allowEndDate", value),
     onSettled: async () => enabledEndDate.refetch(),
   });
 
@@ -46,7 +49,7 @@ export const NoteDate = () => {
 
           {!enabledEndDate.isLoading && (
             <div>
-              {enabledEndDate.data?.value && (
+              {enabledEndDate.data && (
                 <Field>
                   <Label>End Date</Label>
                   <Input
@@ -61,14 +64,13 @@ export const NoteDate = () => {
               )}
 
               <Field
-                className={`flex items-center ${enabledEndDate.data?.value ? "text-gray-600 text-sm" : "text-gray-200"}`}
+                className={`flex items-center ${enabledEndDate.data ? "text-gray-600 text-sm" : "text-gray-200"}`}
               >
                 <Checkbox
-                  checked={(enabledEndDate.data?.value as boolean) ?? false}
-                  onChange={() => {
-                    enabledEndDate.data &&
-                      toggleEnabledEndDate.mutate(enabledEndDate.data);
-                  }}
+                  checked={(enabledEndDate.data as boolean) ?? false}
+                  onChange={() =>
+                    toggleEnabledEndDate.mutate(!enabledEndDate.data)
+                  }
                   name="allow-end-date"
                   className="group block size-4 rounded border bg-white data-[checked]:bg-blue-500 mr-4"
                 >

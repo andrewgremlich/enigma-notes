@@ -1,13 +1,20 @@
 import type { Dexie, EntityTable } from "dexie";
 
+export type AppDataKey =
+  | "cryptoKey"
+  | "activeNoteView"
+  | "allowEndDate"
+  | "featureFlags";
+
+export type AppDataValueObject = {
+  [key: string]: string | boolean | number;
+};
+
+export type AppDataValue = string | AppDataValueObject | CryptoKey | boolean;
+
 export type AppData = {
-  id: string;
-  key: string;
-  value:
-    | string
-    | { [key: string]: string | boolean | number }
-    | CryptoKey
-    | boolean;
+  key: AppDataKey;
+  value: AppDataValue;
 };
 
 export type FeatureFlag =
@@ -33,6 +40,6 @@ export type Note = {
 
 export type AppDB =
   | Dexie & {
-      appData: EntityTable<AppData, "id">;
+      appData: EntityTable<AppData, "key">;
       notes: EntityTable<Note, "id">;
     };

@@ -9,30 +9,33 @@ import {
 
 import { defaultSettingsState } from "./state";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  addFeatureFlagsToAppData,
-  getFeatureFlagsFromAppData,
-  toggleFeatureFlag,
-} from "@/db/appData";
-import type { FeatureFlag } from "@/db/types";
+import { putAppData, getAppData, addAppData } from "@/db/appData";
+import type { AppDataValueObject, FeatureFlag } from "@/db/types";
 import { IconWrapper } from "../Style";
 
 export const FeatureFlags = () => {
-  const getFeatureFlags = useQuery({
+  const getFeatureFlags = useQuery<AppDataValueObject>({
     queryKey: ["get", "featureFlags"],
     queryFn: async () => {
-      const featureFlags = await getFeatureFlagsFromAppData();
+      const featureFlags = await getAppData("featureFlags");
 
-      if (!featureFlags?.value) {
-        await addFeatureFlagsToAppData(defaultSettingsState);
+      if (!featureFlags) {
+        await addAppData("featureFlags", defaultSettingsState);
         return defaultSettingsState;
       }
 
-      return featureFlags?.value;
+      return featureFlags?.value as AppDataValueObject;
     },
   });
   const toggleFeatureFlagMutation = useMutation({
-    mutationFn: (key: FeatureFlag) => toggleFeatureFlag(key),
+    mutationFn: async (key: FeatureFlag) => {
+      if (!getFeatureFlags.data) return;
+
+      await putAppData("featureFlags", {
+        ...getFeatureFlags.data,
+        [key]: !getFeatureFlags.data[key],
+      });
+    },
     onSettled: async () => {
       await getFeatureFlags.refetch();
     },

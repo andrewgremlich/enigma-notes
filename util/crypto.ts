@@ -1,10 +1,16 @@
 // const { iv, ciphertext } = await encryptData("test", derivedKey);
 // console.log(await decryptData(ciphertext, derivedKey, iv));
 
-export async function getKeyFromPassword(
-  password: BufferSource,
-  salt: BufferSource
-) {
+export async function getSalt() {
+  const salt = window.crypto.getRandomValues(new Uint8Array(16));
+  return {
+    saltBuffer: salt,
+    saltHex: Array.from(new Uint8Array(salt)),
+  };
+}
+
+export async function getKeyFromPassword(password: BufferSource) {
+  const { saltBuffer } = await getSalt();
   const keyMaterial = await window.crypto.subtle.importKey(
     "raw",
     password,
@@ -16,7 +22,7 @@ export async function getKeyFromPassword(
   return window.crypto.subtle.deriveKey(
     {
       name: "PBKDF2",
-      salt: salt,
+      salt: saltBuffer,
       iterations: 100000,
       hash: "SHA-256",
     },
@@ -25,14 +31,6 @@ export async function getKeyFromPassword(
     false,
     ["encrypt", "decrypt"]
   );
-}
-
-export async function getSalt() {
-  const salt = window.crypto.getRandomValues(new Uint8Array(16));
-  return {
-    saltBuffer: salt,
-    saltHex: Array.from(new Uint8Array(salt)),
-  };
 }
 
 export async function hashData(data: BufferSource) {

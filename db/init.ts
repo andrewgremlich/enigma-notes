@@ -6,7 +6,7 @@ import type { AppDB } from "./types";
 export const db = new Dexie("EnigmaNotes") as AppDB;
 
 db.version(1).stores({
-  appData: "id, key, value",
+  appData: "key",
   notes: "id, content, parentNoteId, images, linkedNotes, tags, starred, created, updated",
 });
 

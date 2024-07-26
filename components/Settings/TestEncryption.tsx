@@ -1,6 +1,6 @@
 import { useState, type FormEventHandler } from "react";
 
-import { getCryptoKey } from "@/db/appData";
+import { getAppData } from "@/db/appData";
 import { encryptData, decryptData } from "@/util/crypto";
 import { Input, PrimaryButton } from "../Style";
 
@@ -10,7 +10,7 @@ export const TestEncryption = () => {
   const onSubmit: FormEventHandler = async (evt) => {
     evt.preventDefault();
 
-    const derivedKey = await getCryptoKey();
+    const derivedKey = await getAppData('cryptoKey');
 
     if (!derivedKey) {
       setMessage("No derived key found.");

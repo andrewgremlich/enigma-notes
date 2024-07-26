@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import { getCryptoKey } from "@/db/appData";
+import { getAppData } from "@/db/appData";
 
 import { TagNote } from "../NoteParts/TagNote";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
@@ -15,7 +15,7 @@ export const NoteEditorView = () => {
   const [state, dispatch] = useReducer(noteEditorViewReducer, defaultState);
   const cryptoKey = useQuery({
     queryKey: ["get", "cryptoKey"],
-    queryFn: async () => await getCryptoKey(),
+    queryFn: async () => await getAppData("cryptoKey"),
   });
 
   return (

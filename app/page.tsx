@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, type FormEventHandler } from "react";
 
-import { getCryptoKey, setCryptoKey } from "@/db/appData";
+import { getAppData, addAppData, updateAppData } from "@/db/appData";
 import { Input, PrimaryButton } from "@/components/Style";
 import { getKeyFromPassword, getSalt, hashData } from "@/util/crypto";
 
@@ -14,8 +14,8 @@ export default function Home() {
   const cryptoKey = useQuery({
     queryKey: ["get", "cryptoKey"],
     queryFn: async () => {
-      const cryptoKey = await getCryptoKey();
-      return cryptoKey ?? false;
+      const cryptoKey = await getAppData("cryptoKey");
+      return cryptoKey?.value ?? false;
     },
   });
 
@@ -32,17 +32,12 @@ export default function Home() {
     const passwordBuffer = new TextEncoder().encode(
       formData.get("encrypting-password") as string,
     );
-
     const { hashBuffer } = await hashData(passwordBuffer);
-    const { saltBuffer } = await getSalt();
-    const derivedKey = await getKeyFromPassword(hashBuffer, saltBuffer);
+    const derivedKey = await getKeyFromPassword(hashBuffer);
 
-    await setCryptoKey(derivedKey);
+    await addAppData("cryptoKey", derivedKey);
     await cryptoKey.refetch();
   };
-
-  // make this page to query for a password to encrypt the notes.
-  // otherwise go to an editor route.
 
   return (
     <main className="max-w-prose m-auto">
@@ -53,10 +48,15 @@ export default function Home() {
         taking application.
       </p>
 
-      {!cryptoKey.isLoading && cryptoKey.data === false && (
+      {!cryptoKey.data && (
         <>
           <p className="mb-4">
             No key detected. Input a password for encrypting your notes.
+          </p>
+
+          <p className="mb-4">
+            Once a key is detected, the application will auto-route to the
+            editor.
           </p>
 
           <form className="mb-10" onSubmit={onSubmit}>

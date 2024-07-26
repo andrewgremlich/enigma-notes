@@ -32,6 +32,10 @@ export default function Settings() {
 
         <Hr />
 
+        <h2>A space for adding or modifying the key</h2>
+
+        <Hr />
+
         <TestEncryption />
       </Aside>
     </main>

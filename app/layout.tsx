@@ -4,7 +4,11 @@ import ReactQueryProviders from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
 
+// TODO: Key settings in Settings page.
+
 // TODO: Mobile friendly.
+
+// TODO: a hard reset button to delete all data in settings
 
 // TODO: Explain more how the encryption works and how the app prefers to go.
 
