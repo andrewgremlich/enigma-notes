@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 
-import Providers from "@/components/ReactQueryClientProvider";
+import ReactQueryProviders from "@/components/ReactQueryClientProvider";
 
 import "./globals.css";
-
-// TODO: make "end date" optional for notes. it's mainly for reminders and todos.
-
-// TODO: warn if no crypto key is set on the editor page.
 
 // TODO: Mobile friendly.
 
@@ -43,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
       </body>
     </html>
   );
