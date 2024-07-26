@@ -36,7 +36,7 @@ export default function Home() {
     const derivedKey = await getKeyFromPassword(hashBuffer, saltBuffer);
 
     await setCryptoKey(derivedKey);
-    router.push("/editor");
+    await cryptoKey.refetch();
   };
 
   // make this page to query for a password to encrypt the notes.
