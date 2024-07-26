@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { FormEventHandler } from "react";
+import { useEffect, type FormEventHandler } from "react";
 
 import { getCryptoKey, setCryptoKey } from "@/db/appData";
 import { Input, PrimaryButton } from "@/components/Style";
@@ -19,9 +19,11 @@ export default function Home() {
     },
   });
 
-  if (cryptoKey.data) {
-    router.push("/editor");
-  }
+  useEffect(() => {
+    if (cryptoKey.data) {
+      router.push("/editor");
+    }
+  }, [cryptoKey.data, router.push]);
 
   const onSubmit: FormEventHandler = async (evt) => {
     evt.preventDefault();

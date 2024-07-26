@@ -63,7 +63,6 @@ export const NoteDate = () => {
               <Field
                 className={`flex items-center ${enabledEndDate.data?.value ? "text-gray-600 text-sm" : "text-gray-200"}`}
               >
-                <Label className="mr-4">Allow End Date?</Label>
                 <Checkbox
                   checked={(enabledEndDate.data?.value as boolean) ?? false}
                   onChange={() => {
@@ -71,10 +70,11 @@ export const NoteDate = () => {
                       toggleEnabledEndDate.mutate(enabledEndDate.data);
                   }}
                   name="allow-end-date"
-                  className="group block size-4 rounded border bg-white data-[checked]:bg-blue-500"
+                  className="group block size-4 rounded border bg-white data-[checked]:bg-blue-500 mr-4"
                 >
                   <FiCheck className="text-white" />
                 </Checkbox>
+                <Label className="mr-4">Allow End Date?</Label>
               </Field>
             </div>
           )}
