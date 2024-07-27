@@ -7,6 +7,7 @@ import { Button } from "@headlessui/react";
 import { FeatureFlags } from "@/components/Settings/FeatureFlags";
 import { TestEncryption } from "@/components/Settings/TestEncryption";
 import { Aside, Hr } from "@/components/Style";
+import { CryptoKeySettings } from "@/components/Settings/CryptoKey";
 
 export default function Settings() {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function Settings() {
 
         <Hr />
 
-        <h2>A space for adding or modifying the key</h2>
+        <CryptoKeySettings />
 
         <Hr />
 

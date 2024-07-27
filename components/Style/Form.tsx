@@ -25,6 +25,7 @@ dark:focus:border-blue-300
 transition-all
 duration-300
 ease-in-out
+mb-4
 `)} ${className}`}
     {...rest}
   />
@@ -47,6 +48,7 @@ export const PrimaryButton = <T extends {}>({
       transition-all
       duration-300
       ease-in-out
+      mb-4
       `)} ${className}`}
     {...rest}
   />

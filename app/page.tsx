@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, type FormEventHandler } from "react";
 
-import { getAppData, addAppData, updateAppData } from "@/db/appData";
+import { getAppData, addAppData } from "@/db/appData";
 import { Input, PrimaryButton } from "@/components/Style";
-import { getKeyFromPassword, getSalt, hashData } from "@/util/crypto";
+import { getKeyFromPassword, hashData } from "@/util/crypto";
 
 export default function Home() {
   const router = useRouter();

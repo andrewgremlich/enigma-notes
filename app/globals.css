@@ -73,7 +73,7 @@ h6 {
 }
 
 p {
-  @apply text-base;
+  @apply text-base mb-4;
 }
 
 a {
