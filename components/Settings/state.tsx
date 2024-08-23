@@ -7,5 +7,5 @@ export const defaultSettingsState: { [key in FeatureFlag]: boolean } = {
   chart: false,
   map: false,
   threeD: false,
-  note: false,
+  note: true,
 };
