@@ -6,27 +6,18 @@ import {
   FiPenTool,
   FiTable,
 } from "react-icons/fi";
-
-import { defaultSettingsState } from "./state";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { putAppData, getAppData, addAppData } from "@/db/appData";
+
+import { putAppData } from "@/db/appData";
 import type { AppDataValueObject, FeatureFlag } from "@/db/types";
+import { featureFlagsQueryOptions } from "@/util/query";
+
 import { IconWrapper } from "../Style";
 
 export const FeatureFlags = () => {
-  const getFeatureFlags = useQuery<AppDataValueObject>({
-    queryKey: ["get", "featureFlags"],
-    queryFn: async () => {
-      const featureFlags = await getAppData("featureFlags");
-
-      if (!featureFlags) {
-        await addAppData("featureFlags", defaultSettingsState);
-        return defaultSettingsState;
-      }
-
-      return featureFlags?.value as AppDataValueObject;
-    },
-  });
+  const getFeatureFlags = useQuery<AppDataValueObject>(
+    featureFlagsQueryOptions,
+  );
   const toggleFeatureFlagMutation = useMutation({
     mutationFn: async (key: FeatureFlag) => {
       if (!getFeatureFlags.data) return;
@@ -56,7 +47,7 @@ export const FeatureFlags = () => {
       {[
         {
           icon: (
-            <IconWrapper>
+            <IconWrapper className="mx-2">
               <FiTable size={20} />
             </IconWrapper>
           ),
@@ -66,7 +57,7 @@ export const FeatureFlags = () => {
         },
         {
           icon: (
-            <IconWrapper>
+            <IconWrapper className="mx-2">
               <FiPenTool size={20} />
             </IconWrapper>
           ),
@@ -76,7 +67,7 @@ export const FeatureFlags = () => {
         },
         {
           icon: (
-            <IconWrapper>
+            <IconWrapper className="mx-2">
               <FiMusic size={20} />
             </IconWrapper>
           ),
@@ -86,7 +77,7 @@ export const FeatureFlags = () => {
         },
         {
           icon: (
-            <IconWrapper>
+            <IconWrapper className="mx-2">
               <FiBarChart2 size={20} />
             </IconWrapper>
           ),
@@ -96,7 +87,7 @@ export const FeatureFlags = () => {
         },
         {
           icon: (
-            <IconWrapper>
+            <IconWrapper className="mx-2">
               <FiMap size={20} />
             </IconWrapper>
           ),

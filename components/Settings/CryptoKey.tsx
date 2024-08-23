@@ -1,10 +1,10 @@
-import { dataTagSymbol, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getAppData } from "@/db/appData";
 import { PrimaryButton } from "../Style";
 
 export const CryptoKeySettings = () => {
-  const {isLoading, data} = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["get", "cryptoKey"],
     queryFn: async () => {
       const cryptoKey = await getAppData("cryptoKey");
@@ -27,4 +27,4 @@ export const CryptoKeySettings = () => {
       <p>Share this with people you want to share documents with.</p>
     </div>
   );
-}
+};

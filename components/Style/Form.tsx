@@ -37,8 +37,8 @@ export const PrimaryButton = <T extends {}>({
 }: ButtonProps & Props<T>) => (
   <Button
     className={`${cleanStyleForInlineJsx(`
-      bg-blue-700
-      dark:bg-blue-300
+      bg-emerald-950
+      dark:bg-emerald-200
       text-white
       dark:text-black
       p-2
