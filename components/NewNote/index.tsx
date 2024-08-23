@@ -37,7 +37,7 @@ export const NewNote = ({
 }) => (
   <PositionDiv placeIn={placeIn}>
     <Menu>
-      <MenuButton className="flex">
+      <MenuButton className="bg-emerald-950 p-2 rounded-lg mt-2">
         <IconWrapper>
           {activeNoteView === "note"
             ? cloneAndFindIcon(activeNoteView)
@@ -52,7 +52,7 @@ export const NewNote = ({
       </MenuButton>
       <MenuItems
         anchor="top"
-        className="bg-slate-800 p-2 rounded-xl flex flex-col-reverse"
+        className="bg-slate-800 p-2 rounded-xl flex flex-col-reverse mb-2"
       >
         <MenuItem>
           <Button
