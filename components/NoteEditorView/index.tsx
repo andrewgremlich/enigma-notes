@@ -32,9 +32,10 @@ export const NoteEditorView = () => {
         </div>
       )}
       <Wysiwyg
-        className="min-h-96"
+        className="min-h-96 bg-slate-950 shadow-2xl rounded-md"
         updateNote={(note) => dispatch({ type: "UPDATE_NOTE", payload: note })}
       />
+
       <TagNote
         updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}
         removeTag={(tag) => dispatch({ type: "REMOVE_TAG", payload: tag })}

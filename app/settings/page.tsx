@@ -15,7 +15,7 @@ export default function Settings() {
   return (
     <main className="h-full w-full max-w-prose m-auto">
       <Aside className="mt-10">
-        <div className="flex justify-between">
+        <div className="flex justify-between mb-4">
           <h1>Settings</h1>
           <Button
             className="flex items-center hover:text-yellow-200 transition-colors duration-200 ease-in"
@@ -26,8 +26,6 @@ export default function Settings() {
             Editor
           </Button>
         </div>
-
-        <Hr />
 
         <FeatureFlags />
 

@@ -28,18 +28,10 @@ export const Aside = <T extends {}>({
   ...rest
 }: Props<T>) => (
   <aside
-    className={`${cleanStyleForInlineJsx(`bg-slate-200
-    dark:bg-slate-800
-    hover:shadow-yellow-900
-    dark:hover:shadow-yellow-100
-    cursor-pointer
-    
+    className={`${cleanStyleForInlineJsx(`
     px-6
     py-4
-    rounded-md
-    shadow-lg
     mb-10
-    
     transition-all
     duration-300
     ease-in-out`)} ${className}`}

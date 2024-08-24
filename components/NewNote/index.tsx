@@ -14,7 +14,12 @@ import { featureFlagsQueryOptions } from "@/util/query";
 
 import { MenuItemsData } from "./MenuItemsData";
 import { NewNoteMenuItem } from "./NewNoteMenuItem";
-import { IconWrapper, type PlaceIn, PositionDiv } from "../Style";
+import {
+  IconWrapper,
+  type PlaceIn,
+  PositionDiv,
+  PrimaryButton,
+} from "../Style";
 
 const cloneAndFindIcon = (label: FeatureFlag) =>
   cloneElement(
@@ -40,50 +45,63 @@ export const NewNote = ({
   const { data: featureFlags } = useQuery<AppDataValueObject>(
     featureFlagsQueryOptions,
   );
+  const activeFeatureFlags =
+    featureFlags &&
+    Object.entries(featureFlags).filter(([key, value]) => value);
 
   return (
     <PositionDiv placeIn={placeIn}>
-      <Menu>
-        <MenuButton className="bg-emerald-950 p-2 rounded-lg mt-2">
-          <IconWrapper>
-            {activeNoteView === "note"
-              ? cloneAndFindIcon(activeNoteView)
-              : activeNoteView === "table"
+      {(activeFeatureFlags?.length ?? 0) > 1 ? (
+        <Menu>
+          <MenuButton className="bg-emerald-950 p-2 rounded-lg mt-2">
+            <IconWrapper>
+              {activeNoteView === "note"
                 ? cloneAndFindIcon(activeNoteView)
-                : (console.error(
-                    "NewNote/index.ts: You have clicked an unsupported note type.",
-                    // biome-ignore lint/style/noCommaOperator: This is error handling for unsupported note type.
-                  ),
-                  cloneAndFindIcon(activeNoteView))}
-          </IconWrapper>
-        </MenuButton>
-        <MenuItems
-          anchor="top"
-          className="bg-slate-800 p-2 rounded-xl flex flex-col-reverse mb-2"
-        >
-          <MenuItem>
-            <Button
-              title="Add a new note of the same type"
-              className="border-t-2 border-slate-700"
-              onClick={() => console.log("same note of type")}
-            >
-              <FiPlus size={30} className="m-4 hover:text-yellow-300" />
-            </Button>
-          </MenuItem>
-          {MenuItemsData.map(
-            ({ label, iconComponent }) =>
-              label !== activeNoteView &&
-              featureFlags &&
-              featureFlags[label] && (
-                <NewNoteMenuItem
-                  key={crypto.randomUUID()}
-                  activateNoteView={() => activateNoteView(label)}
-                  iconComponent={iconComponent}
-                />
-              ),
-          )}
-        </MenuItems>
-      </Menu>
+                : activeNoteView === "table"
+                  ? cloneAndFindIcon(activeNoteView)
+                  : (console.error(
+                      "NewNote/index.ts: You have clicked an unsupported note type.",
+                      // biome-ignore lint/style/noCommaOperator: This is error handling for unsupported note type.
+                    ),
+                    cloneAndFindIcon(activeNoteView))}
+            </IconWrapper>
+          </MenuButton>
+          <MenuItems
+            anchor="top"
+            className="bg-slate-800 p-2 rounded-xl flex flex-col-reverse mb-2"
+          >
+            <MenuItem>
+              <Button
+                title="Add a new note of the same type"
+                className="border-t-2 border-slate-700"
+                onClick={() => console.log("same note of type")}
+              >
+                <FiPlus size={30} className="m-4 hover:text-yellow-300" />
+              </Button>
+            </MenuItem>
+            {MenuItemsData.map(
+              ({ label, iconComponent }) =>
+                label !== activeNoteView &&
+                featureFlags &&
+                featureFlags[label] && (
+                  <NewNoteMenuItem
+                    key={crypto.randomUUID()}
+                    activateNoteView={() => activateNoteView(label)}
+                    iconComponent={iconComponent}
+                  />
+                ),
+            )}
+          </MenuItems>
+        </Menu>
+      ) : (
+        <PrimaryButton onClick={() => console.log("hello world")}>
+          {cloneAndFindIcon(
+            MenuItemsData.find(
+              ({ label: itemLabel }) => itemLabel === activeNoteView,
+            )?.label ?? "note",
+          ) ?? <FiPenTool size={30} className="mr-2" />}
+        </PrimaryButton>
+      )}
     </PositionDiv>
   );
 };
