@@ -36,7 +36,7 @@ export const NoteDate = () => {
       <Aside>
         <aside className="flex">
           <Field>
-            <Label>Start Date</Label>
+            <Label className="mr-4">Created</Label>
             <Input
               id="note-start-date"
               className="grow dark:bg-gray-700 mr-6"

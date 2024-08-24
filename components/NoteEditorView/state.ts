@@ -6,6 +6,7 @@ export type NoteEditorViewState = {
   metadata: {
     created: number;
     modified: number;
+    endDate: number;
   };
   error?: string;
 };
@@ -43,5 +44,6 @@ export const defaultState: NoteEditorViewState = {
   metadata: {
     created: new Date().getTime(),
     modified: new Date().getTime(),
+    endDate: new Date().getTime(),
   },
 };

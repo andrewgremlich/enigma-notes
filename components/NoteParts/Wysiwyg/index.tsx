@@ -1,3 +1,5 @@
+import "./style.css";
+
 import { useCallback, useMemo, useState } from "react";
 import { createEditor } from "slate";
 import {
@@ -48,6 +50,7 @@ export const Wysiwyg = ({ className, updateNote }: WywsiwygProps) => {
   return (
     <Aside
       className={`${className}`}
+      id="wysiwyg"
       onClick={() => ReactEditor.focus(editor)}
       onKeyDown={() => ReactEditor.focus(editor)}
     >

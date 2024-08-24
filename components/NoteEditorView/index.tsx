@@ -1,21 +1,35 @@
-import { useReducer } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { getAppData } from "@/db/appData";
 
-import { TagNote } from "../NoteParts/TagNote";
+// import { TagNote } from "../NoteParts/TagNote";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
-import { NoteDate } from "../NoteParts/NoteDate";
-import { defaultState, noteEditorViewReducer } from "./state";
+// import { NoteDate } from "../NoteParts/NoteDate";
 import { NoteArticle, PrimaryButton } from "../Style";
+import { getNote, newNote } from "@/db/notes";
 
 export const NoteEditorView = () => {
   const router = useRouter();
-  const [state, dispatch] = useReducer(noteEditorViewReducer, defaultState);
+  const searchParams = useSearchParams();
+  const activeNoteId = searchParams.get("activeNoteId");
+
   const cryptoKey = useQuery({
     queryKey: ["get", "cryptoKey"],
     queryFn: async () => await getAppData("cryptoKey"),
+  });
+  const getNoteFromQuery = useQuery({
+    queryKey: ["get", "note", activeNoteId],
+    queryFn: async () => {
+      if (!activeNoteId) return;
+      const note = await getNote(activeNoteId);
+      return note;
+    },
+    enabled: !!activeNoteId,
+  });
+
+  const createNewNote = useMutation({
+    mutationFn: async (firstContent: string) => newNote(firstContent),
   });
 
   return (
@@ -33,15 +47,15 @@ export const NoteEditorView = () => {
       )}
       <Wysiwyg
         className="min-h-96 bg-slate-950 shadow-2xl rounded-md"
-        updateNote={(note) => dispatch({ type: "UPDATE_NOTE", payload: note })}
+        updateNote={(note) => console.log("Updating note", note)}
       />
 
-      <TagNote
+      {/* <TagNote
         updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}
         removeTag={(tag) => dispatch({ type: "REMOVE_TAG", payload: tag })}
         tags={state.tags}
       />
-      <NoteDate />
+      <NoteDate /> */}
     </NoteArticle>
   );
 };

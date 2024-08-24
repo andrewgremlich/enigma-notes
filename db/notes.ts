@@ -1,6 +1,6 @@
 import { db } from "./init";
 
-export const addNote = async (content: string) => {
+export const newNote = async (content: string) => {
   try {
     const created = Date.now();
     const updated = created;
@@ -19,6 +19,19 @@ export const addNote = async (content: string) => {
   } catch (error) {
     // Handle the error here
     console.error("Error adding note:", error);
+    throw error; // Rethrow the error to propagate it
+  }
+};
+
+export const updateNote = async (id: string, content: string) => {
+  try {
+    return await db?.notes.update(id, {
+      content,
+      updated: Date.now(),
+    });
+  } catch (error) {
+    // Handle the error here
+    console.error("Error updating note:", error);
     throw error; // Rethrow the error to propagate it
   }
 };

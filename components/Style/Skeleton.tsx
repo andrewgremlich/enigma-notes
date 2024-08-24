@@ -29,8 +29,7 @@ export const Aside = <T extends {}>({
 }: Props<T>) => (
   <aside
     className={`${cleanStyleForInlineJsx(`
-    px-6
-    py-4
+    px-10
     mb-10
     transition-all
     duration-300

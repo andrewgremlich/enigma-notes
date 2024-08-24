@@ -1,6 +1,7 @@
 "use client";
 
 import { useLiveQuery } from "dexie-react-hooks";
+import { Suspense } from "react";
 
 import { AccountNotesView } from "@/components/AccountNotesView";
 import { NoteEditorView } from "@/components/NoteEditorView";
@@ -12,20 +13,22 @@ export default function Home() {
   const activeNoteView = useLiveQuery(() => getAppData("activeNoteView"));
 
   return (
-    <main className="h-full w-full flex">
-      <AccountNotesView />
-      {activeNoteView?.value === "note" ? (
-        <NoteEditorView />
-      ) : (
-        <NoteEditorView />
-      )}
-      <NewNote
-        placeIn="bottom-right"
-        activeNoteView={activeNoteView?.value as FeatureFlag}
-        activateNoteView={(label: FeatureFlag) =>
-          putAppData("activeNoteView", label)
-        }
-      />
-    </main>
+    <Suspense>
+      <main className="h-full w-full flex">
+        <AccountNotesView />
+        {activeNoteView?.value === "note" ? (
+          <NoteEditorView />
+        ) : (
+          <NoteEditorView />
+        )}
+        <NewNote
+          placeIn="bottom-right"
+          activeNoteView={activeNoteView?.value as FeatureFlag}
+          activateNoteView={(label: FeatureFlag) =>
+            putAppData("activeNoteView", label)
+          }
+        />
+      </main>
+    </Suspense>
   );
 }
