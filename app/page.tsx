@@ -1,43 +1,12 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, type FormEventHandler } from "react";
 
-import { getAppData, addAppData } from "@/db/appData";
 import { Input, PrimaryButton } from "@/components/Style";
-import { getKeyFromPassword, hashData } from "@/util/crypto";
+import { useCryptoKey } from "@/util/useCryptoKey";
 
 export default function Home() {
-  const router = useRouter();
-  const cryptoKey = useQuery({
-    queryKey: ["get", "cryptoKey"],
-    queryFn: async () => {
-      const cryptoKey = await getAppData("cryptoKey");
-      return cryptoKey?.value ?? false;
-    },
-  });
-
-  useEffect(() => {
-    if (cryptoKey.data) {
-      router.push("/editor");
-    }
-  }, [cryptoKey.data, router.push]);
-
-  const onSubmit: FormEventHandler = async (evt) => {
-    evt.preventDefault();
-
-    const formData = new FormData(evt.target as HTMLFormElement);
-    const passwordBuffer = new TextEncoder().encode(
-      formData.get("encrypting-password") as string,
-    );
-    const { hashBuffer } = await hashData(passwordBuffer);
-    const derivedKey = await getKeyFromPassword(hashBuffer);
-
-    await addAppData("cryptoKey", derivedKey);
-    await cryptoKey.refetch();
-  };
+  const [cryptoKey, generateAndStore] = useCryptoKey();
 
   return (
     <main className="max-w-prose m-auto">
@@ -59,7 +28,7 @@ export default function Home() {
             editor.
           </p>
 
-          <form className="mb-10" onSubmit={onSubmit}>
+          <form className="mb-10" onSubmit={generateAndStore}>
             <Input
               id="encrypting-password"
               name="encrypting-password"

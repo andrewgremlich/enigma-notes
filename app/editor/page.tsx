@@ -3,19 +3,20 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Suspense } from "react";
 
-import { AccountNotesView } from "@/components/AccountNotesView";
+import { SideBar } from "@/components/SideBar";
 import { NoteEditorView } from "@/components/NoteEditorView";
 import { NewNote } from "@/components/NewNote";
 import { getAppData, putAppData } from "@/db/appData";
 import type { FeatureFlag } from "@/db/types";
+import { Loading } from "@/components/Loading";
 
 export default function Home() {
   const activeNoteView = useLiveQuery(() => getAppData("activeNoteView"));
 
   return (
-    <Suspense>
+    <Suspense fallback={<Loading />}>
       <main className="h-full w-full flex">
-        <AccountNotesView />
+        <SideBar />
         {activeNoteView?.value === "note" ? (
           <NoteEditorView />
         ) : (

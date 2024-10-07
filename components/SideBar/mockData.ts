@@ -44,4 +44,4 @@ export const folder = {
 	],
 };
 
-export const accountNotesViewData = flattenTree(folder);
+export const SideBarData = flattenTree(folder);

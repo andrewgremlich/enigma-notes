@@ -1,11 +1,11 @@
 import { FiCalendar, FiFile } from "react-icons/fi";
 
-import type { AccountNotesViewType } from "./index";
+import type { SideBarType } from "./index";
 import { IconWrapper } from "../Style";
 
 type ViewerTypeProps = {
-  setView: (view: AccountNotesViewType) => void;
-  view: AccountNotesViewType;
+  setView: (view: SideBarType) => void;
+  view: SideBarType;
 };
 
 export const ViewerType = ({ setView, view }: ViewerTypeProps) => {
