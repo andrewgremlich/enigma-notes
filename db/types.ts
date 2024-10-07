@@ -4,7 +4,8 @@ export type AppDataKey =
   | "cryptoKey"
   | "activeNoteView"
   | "allowEndDate"
-  | "featureFlags";
+  | "featureFlags"
+  | "mapLocation";
 
 export type AppDataValueObject = {
   [key: string]: string | boolean | number;

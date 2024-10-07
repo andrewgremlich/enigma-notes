@@ -8,6 +8,7 @@ import { FeatureFlags } from "@/components/Settings/FeatureFlags";
 import { TestEncryption } from "@/components/Settings/TestEncryption";
 import { Aside, Hr } from "@/components/Style";
 import { CryptoKeySettings } from "@/components/Settings/CryptoKey";
+import { MapLocationSettings } from "@/components/Settings/MapLocation";
 
 export default function Settings() {
   const router = useRouter();
@@ -26,6 +27,10 @@ export default function Settings() {
             Editor
           </Button>
         </div>
+
+        <MapLocationSettings />
+
+        <Hr />
 
         <FeatureFlags />
 

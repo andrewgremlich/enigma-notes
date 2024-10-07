@@ -1,11 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 
 import { getAppData } from "@/db/appData";
 
 // import { TagNote } from "../NoteParts/TagNote";
-import { Wysiwyg } from "../NoteParts/Wysiwyg";
 // import { NoteDate } from "../NoteParts/NoteDate";
+import { Wysiwyg } from "../NoteParts/Wysiwyg";
 import { NoteArticle, PrimaryButton } from "../Style";
 import { getNote, newNote } from "@/db/notes";
 
@@ -27,10 +29,17 @@ export const NoteEditorView = () => {
     },
     enabled: !!activeNoteId,
   });
-
   const createNewNote = useMutation({
     mutationFn: async (firstContent: string) => newNote(firstContent),
   });
+  const MapLocation = useMemo(
+    () =>
+      dynamic(() => import("../MapLocation"), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false,
+      }),
+    [],
+  );
 
   return (
     <NoteArticle>
@@ -49,6 +58,7 @@ export const NoteEditorView = () => {
         className="min-h-96 bg-slate-950 shadow-2xl rounded-md"
         updateNote={(note) => console.log("Updating note", note)}
       />
+      <MapLocation />
 
       {/* <TagNote
         updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}
