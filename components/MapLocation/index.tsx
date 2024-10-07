@@ -10,7 +10,7 @@ export default function MapLocation() {
   const geoObj = useGeolocation();
 
   return (
-    <div className="h-40">
+    <div className="pb-6">
       <h2>Map</h2>
       <GeolocationMessage />
       {geoObj?.lat && geoObj?.lng && (

@@ -60,9 +60,9 @@ export const NoteEditorView = () => {
         className="min-h-96 bg-slate-950 shadow-2xl rounded-md"
         updateNote={(note) => console.log("Updating note", note)}
       />
+      <MapLocation />
       <Astronomy />
       <Weather />
-      <MapLocation />
 
       {/* <TagNote
         updateTags={(tags) => dispatch({ type: "UPDATE_TAGS", payload: tags })}

@@ -15,7 +15,7 @@ export const SideBarOpener = ({
 }: SideBarOpenerProps) => {
   return (
     <aside
-      className={`${isOpen ? "animate-slide-out" : "animate-slide-in"} bg-slate-800 relative h-full`}
+      className={`${isOpen ? "animate-slide-out" : "animate-slide-in"} bg-slate-800 fixed h-full z-10`}
     >
       <Button
         onClick={() => setIsOpen(!isOpen)}

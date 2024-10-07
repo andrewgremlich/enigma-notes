@@ -82,4 +82,5 @@ a {
 
 .leaflet-container {
   height: 300px;
+  z-index: 0;
 }
