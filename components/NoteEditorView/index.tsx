@@ -44,7 +44,7 @@ export const NoteEditorView = () => {
   );
 
   return (
-    <NoteArticle>
+    <NoteArticle className="overflow-y-scroll">
       {!cryptoKey.data && !cryptoKey.isLoading && (
         <div className="w-full bg-red-400 p-2 mb-5 text-slate-950 rounded-sm flex justify-between items-center">
           <p>
