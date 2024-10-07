@@ -4,12 +4,14 @@ import dynamic from "next/dynamic";
 import { useMemo } from "react";
 
 import { getAppData } from "@/db/appData";
+import { getNote, newNote } from "@/db/notes";
 
 // import { TagNote } from "../NoteParts/TagNote";
 // import { NoteDate } from "../NoteParts/NoteDate";
 import { Wysiwyg } from "../NoteParts/Wysiwyg";
 import { NoteArticle, PrimaryButton } from "../Style";
-import { getNote, newNote } from "@/db/notes";
+import { Weather } from "../Weather";
+import { Astronomy } from "../Astronomy";
 
 export const NoteEditorView = () => {
   const router = useRouter();
@@ -58,6 +60,8 @@ export const NoteEditorView = () => {
         className="min-h-96 bg-slate-950 shadow-2xl rounded-md"
         updateNote={(note) => console.log("Updating note", note)}
       />
+      <Astronomy />
+      <Weather />
       <MapLocation />
 
       {/* <TagNote

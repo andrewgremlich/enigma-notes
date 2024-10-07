@@ -4,7 +4,7 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import { useGeolocation } from "rooks";
-import Link from "next/link";
+import { GeolocationMessage } from "../GeolocationMessage";
 
 export default function MapLocation() {
   const geoObj = useGeolocation();
@@ -12,14 +12,7 @@ export default function MapLocation() {
   return (
     <div className="h-40">
       <h2>Map</h2>
-      {geoObj?.isError && (
-        <>
-          <p>Geolocation isn't enabled</p>
-          <Link href="/settings#map-location-settings">
-            Go to settings and activate?
-          </Link>
-        </>
-      )}
+      <GeolocationMessage />
       {geoObj?.lat && geoObj?.lng && (
         <MapContainer
           center={[geoObj.lat, geoObj.lng]}
